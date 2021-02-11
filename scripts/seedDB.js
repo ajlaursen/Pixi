@@ -4,7 +4,7 @@ const db = require("../models");
 
 mongoose.connect(
   process.env.MONGODB_URI ||
-  "mongodb://localhost/<MODEL_NAME_HERE>"
+  "mongodb://localhost/pixi"
 );
 
 const seed = [
@@ -13,9 +13,9 @@ const seed = [
   }
 ];
 
-db.<MODEL_NAME_HERE>
+db.pixi
   .remove({})
-  .then(() => db.<MODEL_NAME_HERE>.collection.insertMany(<MODEL_NAME_HERE>Seed))
+  .then(() => db.pixi.collection.insertMany(seed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);
