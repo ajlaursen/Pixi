@@ -8,7 +8,7 @@ const imagesSchema = new Schema({
   id: {
     type: String,
     trim: true,
-    required: "id is Required"
+    required: 'id is Required',
   },
 
   userId: {
@@ -30,8 +30,8 @@ const imagesSchema = new Schema({
   tags: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Tag"
-    }
+      ref: 'Tag',
+    },
   ],
 
   free: {
@@ -44,8 +44,8 @@ const imagesSchema = new Schema({
 
   creationDate: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 const Images = mongoose.model('Images', imagesSchema);

@@ -4,20 +4,20 @@ const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
   description: {
-      type: String,
+    type: String,
   },
 
   imageId: {
-      type: String,
+    type: String,
   },
 
   userId: {
-      type: String,
+    type: String,
   },
 
   creationDate: {
-      type: Date,
-      default: Date.now,
+    type: Date,
+    default: Date.now,
   },
 
   updateDate: {
