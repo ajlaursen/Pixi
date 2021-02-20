@@ -4,6 +4,16 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
+const session = require('express-session');
+
+const sess = {
+  secret: 'Pixi Darkmode',
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  // store: 
+};
+app.use(session(sess));
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
