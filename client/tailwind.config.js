@@ -8,7 +8,9 @@ module.exports = {
     extend: {
       colors: {
         'pixi': '#fdf5f3',
-        'buttonColor': '#1E5675'
+        'buttonColor': '#1E5675',
+        'cardColor': '#CAB8AC'
+
       },
     },
     screens: {
