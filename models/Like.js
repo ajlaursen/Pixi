@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 
 const likeSchema = new Schema({
   imageId: {
-      type: String,
+    type: String,
   },
 
   userId: {
-      type: String,
+    type: String,
   },
 });
 
