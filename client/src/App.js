@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from './Components/Navbar';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Card from './Components/Cards/card'
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 // import Home from './pages/home';
 // import Seller from './pages/seller';
 // import Signin from './Pages/SignupLogin'
@@ -12,6 +13,8 @@ function App() {
     <>
     <Router>
       <Navbar />
+      <Card />
+
       <Switch>
 
       </Switch>
