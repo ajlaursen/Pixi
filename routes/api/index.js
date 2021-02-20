@@ -1,7 +1,5 @@
-const router = require("express").Router();
-const login = require("./login");
-
-
+const router = require('express').Router();
+const login = require('./login');
 
 router.use('/login', login);
 
