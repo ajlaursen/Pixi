@@ -26,15 +26,38 @@
     "default-case": "error",
     "no-fallthrough": "error",
     "no-unused-vars": "error",
-    "no-use-before-define": "error",
+    "no-use-before-define": "warn",
     "no-redeclare": "error",
     "brace-style": "error",
-    "indent": ["error", 2],
-    "quotes": ["error", "single"],
-    "semi": ["error", "always"],
+    "indent": [
+      "error",
+      4
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
     "radix": "off",
-    "prettier/prettier": ["error", {"singleQuote": true, "parser": "flow"}]
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "parser": "flow",
+        "endOfLine": "auto",
+        "indent": 4,
+        "useTabs": false,
+        "tabWidth": 4
+      }
+    ]
   },
-  "extends": ["plugin:prettier/recommended"],
-  "plugins": ["prettier"]
+  "extends": [
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "prettier"
+  ]
 }
