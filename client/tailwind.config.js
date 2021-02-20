@@ -5,6 +5,12 @@ module.exports = {
   presets: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    extend: {
+      colors: {
+        'pixi': '#fdf5f3',
+        'buttonColor': '#1E5675'
+      },
+    },
     screens: {
       phone: '320px',
       tablet: '640px',
@@ -907,7 +913,7 @@ module.exports = {
     transitionDuration: ['responsive'],
     transitionProperty: ['responsive'],
     transitionTimingFunction: ['responsive'],
-    translate: ['responsive', 'hover', 'focus'],
+    translate: ['responsive', 'hover', 'focus', 'group-hover'],
     userSelect: ['responsive'],
     verticalAlign: ['responsive'],
     visibility: ['responsive'],
