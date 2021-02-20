@@ -3,6 +3,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
+  id: {
+    type: String,
+    trim: true,
+    required: "id is Required"
+  },
+
   firstName: {
     type: String,
     trim: true,
@@ -32,6 +38,32 @@ const UserSchema = new Schema({
     type: String,
     unique: true,
     match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
+  },
+
+  url: {
+    type: String,
+    default: '',
+  },
+
+  image: {
+    type: String,
+    default: 'placeholder.png',
+  },
+
+  bio: {
+    type: String,
+    default: '',
+  },
+
+  posts: Array,
+
+  followers: Array,
+
+  following: Array,
+
+  creationDate: {
+    type: Date,
+    default: Date.now,
   },
 });
 
