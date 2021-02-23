@@ -82,7 +82,7 @@ class Navbar extends Component {
                 </div>
                 <div className='text-xl font-thin'>
                   <p className='flex'>
-                    <Link to='/portfolio' className=''>
+                    <Link to='/' className=''>
                       Browse
                     </Link>
                     <svg
@@ -208,15 +208,15 @@ class Navbar extends Component {
                 </div>
                 <div className='text-xl font-thin'>
                   <p className='flex'>
-                    <Link to='/portfolio' className='p-1 mx-3'>
-                      Portfolio
+                    <Link to='/' className='p-1 mx-3'>
+                      Browse
                     </Link>
                   </p>
                 </div>
                 <div className='text-xl font-thin'>
                   <div className='flex'>
-                    <Link to='/contact' className='p-1 mx-3'>
-                      Contact
+                    <Link to='/' className='p-1 mx-3'>
+                      Account
                     </Link>
                   </div>
                 </div>
