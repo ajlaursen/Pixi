@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const UserAuditLogSchema = new Schema({
     userId: {
         type: String,
     },
@@ -56,6 +56,6 @@ const UserSchema = new Schema({
     following: Array,
 });
 
-const User = mongoose.model('User', UserSchema);
+const UserAuditLog = mongoose.model('UserAuditLog', UserAuditLogSchema);
 
-module.exports = User;
+module.exports = UserAuditLog;
