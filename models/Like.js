@@ -4,11 +4,18 @@ const Schema = mongoose.Schema;
 
 const likeSchema = new Schema({
     imageId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Image',
     },
 
     userId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    },
+
+    creationDate: {
+        type: Date,
+        default: Date.now,
     },
 });
 

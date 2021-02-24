@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 
 const UserAuditLogSchema = new Schema({
     userId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
     },
 
     updateDate: {
@@ -51,9 +52,19 @@ const UserAuditLogSchema = new Schema({
         },
     ],
 
-    followers: Array,
+    followers: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+        },
+    ],
 
-    following: Array,
+    following: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+        },
+    ],
 });
 
 const UserAuditLog = mongoose.model('UserAuditLog', UserAuditLogSchema);

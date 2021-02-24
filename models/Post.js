@@ -8,11 +8,13 @@ const postSchema = new Schema({
     },
 
     imageId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Image',
     },
 
     userId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
     },
 
     creationDate: {
