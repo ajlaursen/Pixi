@@ -1,38 +1,22 @@
 const mongoose = require('mongoose');
 require('mongoose-currency').loadType(mongoose);
-const Schema = mongoose.Schema;
 const Currency = mongoose.Types.Currency;
+const Schema = mongoose.Schema;
 
-const imagesSchema = new Schema({
+const ordersSchema = new Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     },
 
-    location: {
-        type: String,
-    },
-
-    title: {
-        type: String,
-    },
-
-    description: {
-        type: String,
-    },
-
-    tags: [
+    photos: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Tag',
+            ref: 'Image',
         },
     ],
 
-    free: {
-        type: Boolean,
-    },
-
-    price: {
+    total: {
         type: Currency,
     },
 
@@ -42,6 +26,6 @@ const imagesSchema = new Schema({
     },
 });
 
-const Images = mongoose.model('Images', imagesSchema);
+const Orders = mongoose.model('Orders', ordersSchema);
 
-module.exports = Images;
+module.exports = Orders;

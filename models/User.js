@@ -3,12 +3,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-    id: {
-        type: String,
-        trim: true,
-        required: 'id is Required',
-    },
-
     firstName: {
         type: String,
         trim: true,
@@ -55,11 +49,26 @@ const UserSchema = new Schema({
         default: '',
     },
 
-    posts: Array,
+    posts: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Post',
+        },
+    ],
 
-    followers: Array,
+    followers: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+        },
+    ],
 
-    following: Array,
+    following: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+        },
+    ],
 
     creationDate: {
         type: Date,
