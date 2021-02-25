@@ -1,6 +1,33 @@
 import React from 'react';
+import faker from 'faker';
+import  { cart } from '../../utils/CART';
 
-function card() {
+
+
+function card(props) {
+
+  
+  const image = faker.fake('{{image.imageUrl}}')
+  const title = faker.fake('{{name.title}}')
+  const description = faker.fake('{{lorem.sentence}}')
+  const id = faker.fake('{{random.number}}')
+
+
+
+  function addToCart() {
+    const product = {
+      id,
+      title,
+      description,
+      image,
+    }
+    console.log(product)
+    props.addToCart(product)
+  }
+
+
+  console.log(image)
+
   return (
     <>
 
@@ -9,7 +36,7 @@ function card() {
           <div className="group relative">
             <img
               className="w-full md:w-72 block rounded"
-              src="https://upload.wikimedia.org/wikipedia/en/1/11/Dive_tycho_album.jpg"
+              src={image}
               alt=""
             />
             <div className="absolute bg-black rounded bg-opacity-0 group-hover:bg-opacity-60 w-full h-full top-0 flex items-center group-hover:opacity-100 transition justify-evenly">
@@ -29,13 +56,13 @@ function card() {
           </div>
           <div className="p-5">
             <h3 className="text-white text-2xl text-center">
-              Title and Artist
+              {title}
             </h3>
-            <p className="text-buttonColor">Description</p>
+            <p className="text-buttonColor">{description}</p>
             <p className="">Hashtag</p>
           </div>
           <div className="flex justify-end">
-            <button className="bg-buttonColor flex justify-end px-3 py-2 rounded-xl shadow-xl mx-2 text-pixi  ">
+            <button  onClick={addToCart} className="bg-buttonColor flex justify-end px-3 py-2 rounded-xl shadow-xl mx-2 text-pixi">
               <p className="pr-2"> Add To Cart</p>
               <svg
                 className="w-7 "
