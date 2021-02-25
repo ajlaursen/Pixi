@@ -28,6 +28,8 @@ const itemsPrice = (cartItems) => {
     return cartItems.reduce((a,c) => a + c.price * c.qty, 0)
 }
 
+function taxPrice(){ return itemsPrice * 0.14;}
 
+function totalPrice() {return itemsPrice + taxPrice}
 
-export const cart = { onAdd, onRemove, itemsPrice }
+export const cart = { onAdd, onRemove, itemsPrice, taxPrice, totalPrice }
