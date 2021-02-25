@@ -3,9 +3,9 @@ require('mongoose-currency').loadType(mongoose);
 const Schema = mongoose.Schema;
 const Currency = mongoose.Types.Currency;
 
-const imagesSchema = new Schema({
+const imageSchema = new Schema({
     userId: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User',
     },
 
@@ -23,7 +23,7 @@ const imagesSchema = new Schema({
 
     tags: [
         {
-            type: mongoose.Schema.Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: 'Tag',
         },
     ],
@@ -42,6 +42,6 @@ const imagesSchema = new Schema({
     },
 });
 
-const Images = mongoose.model('Images', imagesSchema);
+const Image = mongoose.model('Image', imageSchema);
 
-module.exports = Images;
+module.exports = Image;
