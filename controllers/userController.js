@@ -63,4 +63,46 @@ module.exports = {
             res.status(500).json(err);
         }
     },
+    createUser: async function (req, res) {
+        try {
+            const newUser = req.body;
+            newUser.password = await bcrypt.hash(req.body.password, 10);
+            const addedUser = await User.create(newUser);
+            addedUser.passwordChanged = true;
+            await UserAuditLog.create(addedUser);
+            req.session.save(() => {
+                req.session.user_id = addedUser.id;
+                req.session.logged_in = true;
+                res.status(200).json({ message: 'Login Success!' });
+            });
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    },
+    updateUser: async function (req, res) {
+        try {
+            const userId = req.session.user_id;
+            const password = req.body.password;
+            const user = await User.findById({ userId });
+            // const updatedUser = { ...req.body, _id: userId };
+            const updatedUser = { ...user, ...req.body };
+            const passVal = await bcrypt.compare(password, user.password);
+
+            if (!passVal) {
+                updatedUser.passwordChanged = true;
+            }
+            await UserAuditLog.create(updatedUser);
+            const updated = await User.updateOne(
+                { _id: userId },
+                { updatedUser }
+            );
+            if (updated.nModified === 1) {
+                res.status(200).json({ message: 'user updated' });
+            } else {
+                res.staus(404).json({ message: 'user not updated' });
+            }
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    },
 };

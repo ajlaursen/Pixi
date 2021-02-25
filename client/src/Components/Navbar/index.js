@@ -130,14 +130,14 @@ class Navbar extends Component {
                 </div>
                 <div className='text-lg font-thin text-white m-0'>
                   <div className='flex bg-buttonColor rounded-xl shadow-xl text-center justify-center m-1 p-1'>
-                    <Link to='/contact' className=''>
+                    <Link to='/login' className=''>
                       Login
                     </Link>
                   </div>
                 </div>
                 <div className='text-lg font-thin text-white m-0'>
                   <div className='flex bg-buttonColor rounded-xl shadow-xl text-center justify-center m-1 p-1'>
-                    <Link to='/contact' className=''>
+                    <Link to='/login' className=''>
                       Sign up
                     </Link>
                   </div>

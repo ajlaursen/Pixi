@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Navbar from './Components/Navbar';
 import Card from './Components/Cards/card'
+
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
@@ -8,6 +9,7 @@ import card from './Components/Cards/card';
 import Basket from './Components/Cart/Basket';
  import Home from './Pages/Home';
  import Cart from './Pages/Cart';
+
 // import Seller from './pages/seller';
 // import Signin from './Pages/SignupLogin'
 import { cart } from './utils/CART'
@@ -29,6 +31,7 @@ console.log(cartItems)
     <>
       <Router>
         <Navbar />
+
       
         <Switch>
 
@@ -36,6 +39,7 @@ console.log(cartItems)
           exact
           path="/"
           render={(props)=> (<Home cartItems={cartItems}  addToCart={addToCart} {...props} />)}
+
 
           />
             <Route 
