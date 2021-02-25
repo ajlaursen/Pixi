@@ -1,10 +1,10 @@
-const { Image, Orders } = require('../models');
+const db = require('../models');
 // const { Image, Like, Orders, Post, Tag, User, UserAuditLog } = require('../models');
 
 module.exports = {
     getImages: async function (req, res) {
         try {
-            const images = await Image.find({});
+            const images = await db.Image.find({});
             res.status(200).json(images);
         } catch (err) {
             res.status(500).json(err);
@@ -13,7 +13,7 @@ module.exports = {
     getImagesUser: async function (req, res) {
         try {
             const userId = req.session.user_id;
-            const images = await Image.find({ userId: userId });
+            const images = await db.Image.find({ userId: userId });
             res.status(200).json(images);
         } catch (err) {
             res.status(500).json(err);
@@ -21,12 +21,17 @@ module.exports = {
     },
     getOwnedImages: async function (req, res) {
         try {
+            console.log('-------------------------------------');
             const userId = req.session.user_id;
-            const images = await Orders.find({ userId: userId }).populate(
+            console.log('userid', userId);
+            // const images = await db.Orders.find({ userId: userId });
+            const images = await db.Orders.find({ userId: userId }).populate(
                 'photos'
             );
+            console.log(images);
             res.status(200).json(images);
         } catch (err) {
+            console.log(err);
             res.status(500).json(err);
         }
     },
@@ -37,7 +42,8 @@ module.exports = {
                 ...req.body,
                 userId: userId,
             };
-            Orders.create(newOrder);
+            db.Orders.create(newOrder);
+            res.status(200).json({ message: 'Order added' });
         } catch (err) {
             res.status(500).json(err);
         }
@@ -49,7 +55,8 @@ module.exports = {
                 ...req.body,
                 userId: userId,
             };
-            Image.create(newImage);
+            db.Image.create(newImage);
+            res.status(200).json({ message: 'Image added' });
         } catch (err) {
             res.status(500).json(err);
         }

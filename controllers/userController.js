@@ -1,4 +1,4 @@
-const { User, Like } = require('../models');
+const { User, Like, UserAuditLog } = require('../models');
 // const { Image, Like, Orders, Post, Tag, User, UserAuditLog } = require('../models');
 const bcrypt = require('bcrypt');
 
@@ -22,7 +22,7 @@ module.exports = {
             }
 
             req.session.save(() => {
-                req.session.user_id = user.id;
+                req.session.user_id = user._id;
                 req.session.logged_in = true;
                 res.status(200).json({ message: 'Login Success!' });
             });
@@ -66,42 +66,51 @@ module.exports = {
     createUser: async function (req, res) {
         try {
             const newUser = req.body;
+            console.log(newUser);
             newUser.password = await bcrypt.hash(req.body.password, 10);
             const addedUser = await User.create(newUser);
-            addedUser.passwordChanged = true;
-            await UserAuditLog.create(addedUser);
+            newUser.passwordChanged = true;
+            await UserAuditLog.create(newUser);
             req.session.save(() => {
-                req.session.user_id = addedUser.id;
+                req.session.user_id = addedUser._id;
                 req.session.logged_in = true;
-                res.status(200).json({ message: 'Login Success!' });
+                res.status(200).json({ message: 'User Creation Success!' });
             });
         } catch (err) {
+            console.log(err);
             res.status(500).json(err);
         }
     },
     updateUser: async function (req, res) {
+        console.log('-------------------------------------');
         try {
             const userId = req.session.user_id;
             const password = req.body.password;
-            const user = await User.findById({ userId });
+            console.log('password', password);
+            const user = await User.findById(userId);
             // const updatedUser = { ...req.body, _id: userId };
             const updatedUser = { ...user, ...req.body };
             const passVal = await bcrypt.compare(password, user.password);
-
+            console.log(updatedUser);
             if (!passVal) {
                 updatedUser.passwordChanged = true;
+            } else {
+                updatedUser.passwordChanged = false;
             }
             await UserAuditLog.create(updatedUser);
             const updated = await User.updateOne(
                 { _id: userId },
                 { updatedUser }
             );
+            console.log(updated);
+            console.log(updated.nModified);
             if (updated.nModified === 1) {
                 res.status(200).json({ message: 'user updated' });
             } else {
-                res.staus(404).json({ message: 'user not updated' });
+                res.status(404).json({ message: 'user not updated' });
             }
         } catch (err) {
+            console.log(err);
             res.status(500).json(err);
         }
     },
