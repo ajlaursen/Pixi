@@ -144,7 +144,7 @@ class Navbar extends Component {
                 </div>
                 <div className='text-xl font-thin'>
                   <div className='flex'>
-                    <Link to='/contact' className=''>
+                    <Link to='/cart' className=''>
                       Cart
                     </Link>
                     <svg
