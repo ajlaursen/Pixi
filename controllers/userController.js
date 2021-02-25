@@ -22,7 +22,7 @@ module.exports = {
             }
 
             req.session.save(() => {
-                req.session.user_id = user.id;
+                req.session.user_id = user._id;
                 req.session.logged_in = true;
                 res.status(200).json({ message: 'Login Success!' });
             });
@@ -71,7 +71,7 @@ module.exports = {
             addedUser.passwordChanged = true;
             await UserAuditLog.create(addedUser);
             req.session.save(() => {
-                req.session.user_id = addedUser.id;
+                req.session.user_id = addedUser._id;
                 req.session.logged_in = true;
                 res.status(200).json({ message: 'Login Success!' });
             });
