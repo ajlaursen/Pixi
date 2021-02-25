@@ -1,10 +1,11 @@
 const router = require('express').Router();
-const API = require('../../controllers/userController.js');
+const USER = require('../../controllers/userController.js');
+const checkAuth = require('../../utils/auth');
 
-router.post('/login', API.login);
+router.post('/login', USER.login);
 
-router.get('/logout', API.logout);
+router.get('/logout', checkAuth, USER.logout);
 
-router.get('/like/:id', API.like);
+router.get('/like/:id', checkAuth, USER.like);
 
 module.exports = router;

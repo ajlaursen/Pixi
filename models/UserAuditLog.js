@@ -65,6 +65,13 @@ const UserAuditLogSchema = new Schema({
             ref: 'User',
         },
     ],
+
+    tags: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Tag',
+        },
+    ],
 });
 
 const UserAuditLog = mongoose.model('UserAuditLog', UserAuditLogSchema);
