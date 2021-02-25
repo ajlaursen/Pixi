@@ -8,4 +8,6 @@ router.get('/images', checkAuth, API.getImagesUser);
 
 router.get('/myimages', checkAuth, API.getOwnedImages);
 
+router.post('/neworder', checkAuth, API.postOrder);
+
 module.exports = router;
