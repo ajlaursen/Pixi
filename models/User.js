@@ -70,6 +70,13 @@ const UserSchema = new Schema({
         },
     ],
 
+    tags: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Tag',
+        },
+    ],
+
     creationDate: {
         type: Date,
         default: Date.now,
