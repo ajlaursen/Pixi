@@ -83,7 +83,7 @@ module.exports = {
         try {
             const userId = req.session.user_id;
             const password = req.body.password;
-            const user = await User.findOne({ _id: userId });
+            const user = await User.findById({ userId });
             // const updatedUser = { ...req.body, _id: userId };
             const updatedUser = { ...user, ...req.body };
             const passVal = await bcrypt.compare(password, user.password);
