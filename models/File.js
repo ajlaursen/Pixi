@@ -17,11 +17,6 @@ const fileSchema = new Schema({
     location: {
         type: String,
     },
-
-    imageId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Image',
-    },
 });
 
 const File = mongoose.model('File', fileSchema);
