@@ -130,14 +130,14 @@ class Navbar extends Component {
                 </div>
                 <div className='text-lg font-thin text-white m-0'>
                   <div className='flex bg-buttonColor rounded-xl shadow-xl text-center justify-center m-1 p-1'>
-                    <Link to='/contact' className=''>
+                    <Link to='/login' className=''>
                       Login
                     </Link>
                   </div>
                 </div>
                 <div className='text-lg font-thin text-white m-0'>
                   <div className='flex bg-buttonColor rounded-xl shadow-xl text-center justify-center m-1 p-1'>
-                    <Link to='/contact' className=''>
+                    <Link to='/login' className=''>
                       Sign up
                     </Link>
                   </div>
@@ -222,7 +222,7 @@ class Navbar extends Component {
                 </div>
                 <div className='text-xl font-light text-white'>
                   <div className='flex bg-buttonColor rounded-xl shadow-xl mx-2'>
-                    <Link to='/signup' className='p-1 mx-3'>
+                    <Link to='/login' className='p-1 mx-3'>
                       Sign up
                     </Link>
                   </div>
