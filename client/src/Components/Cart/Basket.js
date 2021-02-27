@@ -2,6 +2,11 @@ import React from 'react'
 
 
 function Basket(props) {
+        
+    function price(item) {
+        props.price(item)
+    }
+    
 
     function removeFromCart(item) {
         props.removeFromCart(item)
@@ -51,8 +56,9 @@ function Basket(props) {
                         <td className="justify-center md:justify-end md:flex mt-6">
                             <div className="w-20 h-10">
                                 <div className="relative flex flex-row w-full h-8">
-                                    <input type="number" value="1"
-                                        className="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
+                                    <input type="text" value="0" name="_qty_" 
+                                        // className="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" //
+                                        />
                                 </div>
                             </div>
                         </td>
