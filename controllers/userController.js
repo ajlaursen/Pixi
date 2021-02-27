@@ -69,13 +69,14 @@ module.exports = {
             newUser.password = await bcrypt.hash(req.body.password, 10);
             const addedUser = await db.User.create(newUser);
             newUser.passwordChanged = true;
-            await UserAuditLog.create(newUser);
+            await db.UserAuditLog.create(newUser);
             req.session.save(() => {
                 req.session.user_id = addedUser._id;
                 req.session.logged_in = true;
                 res.status(200).json({ message: 'User Creation Success!' });
             });
         } catch (err) {
+            console.log(err);
             res.status(500).json(err);
         }
     },
