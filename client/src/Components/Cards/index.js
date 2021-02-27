@@ -11,7 +11,7 @@ function card(props) {
   const title = faker.fake('{{name.title}}')
   const description = faker.fake('{{lorem.sentence}}')
   const id = faker.fake('{{random.number}}')
-
+const price = faker.fake('{{finance.amount}}')
 
 
   function addToCart() {
@@ -20,6 +20,7 @@ function card(props) {
       title,
       description,
       image,
+      price
     }
     console.log(product)
     props.addToCart(product)
@@ -79,6 +80,9 @@ function card(props) {
                 />
               </svg>
             </button>
+          </div>
+          <div className="flex justify-start">
+            <p>{price}</p>
           </div>
         </div>
 
