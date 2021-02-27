@@ -91,6 +91,31 @@ module.exports = {
             res.status(500).json(err);
         }
     },
+    removeImageTag: async function (req, res) {
+        try {
+            const tagId = req.body.tagId;
+            const imageId = req.body.imageId;
+            const tagExists = await db.Image.count({
+                _id: ObjectID(imageId),
+                tags: ObjectID(tagId),
+            });
+            if (tagExists === 1) {
+                const updatedImage = await db.Image.updateOne(
+                    { _id: ObjectID(imageId) },
+                    {
+                        $pull: {
+                            tags: ObjectID(tagId),
+                        },
+                    }
+                );
+                res.status(200).json(updatedImage);
+            } else {
+                res.status(200).json({ message: 'tag already removed' });
+            }
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    },
     getAllTags: async function (req, res) {
         try {
             const tags = await db.Tag.find({});
