@@ -9,3 +9,4 @@ module.exports = {
     Tag: require('./Tag'),
     UserAuditLog: require('./UserAuditLog'),
 };
+
