@@ -26,6 +26,10 @@ function removeFromCart(product){
   cart.onRemove(product, cartItems, setCartItems)
 }
 
+function price(product) {
+
+}
+
 console.log(cartItems)
 
   return (
