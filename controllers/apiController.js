@@ -25,9 +25,6 @@ module.exports = {
             const images = await db.Orders.find({ userId: userId }).populate({
                 path: 'photos',
                 model: db.Image,
-                // options: {
-                //     limit: 99,
-                // },
             });
             res.status(200).json(images);
         } catch (err) {
@@ -63,19 +60,42 @@ module.exports = {
     addTag: async function (req, res) {
         try {
             const tag = req.body.tagName;
-            const imageId = req.body.imageId;
-            const newTag = await db.Tag.update(
-                { tag: tag },
-                {
-                    $push: {
-                        images: ObjectID(imageId),
-                    },
-                }
-            );
-            console.log(newTag);
+            const newTag = await db.Tag.create({ tag: tag });
             res.status(200).json(newTag);
         } catch (err) {
-            console.log(err);
+            res.status(500).json(err);
+        }
+    },
+    addImageTag: async function (req, res) {
+        try {
+            const tagId = req.body.tagId;
+            const imageId = req.body.imageId;
+            const tagExists = await db.Image.count({
+                _id: ObjectID(imageId),
+                tags: ObjectID(tagId),
+            });
+            if (tagExists === 1) {
+                res.status(200).json({ message: 'tag already assigned' });
+            } else {
+                const updatedImage = await db.Image.updateOne(
+                    { _id: ObjectID(imageId) },
+                    {
+                        $push: {
+                            tags: ObjectID(tagId),
+                        },
+                    }
+                );
+                res.status(200).json(updatedImage);
+            }
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    },
+    getAllTags: async function (req, res) {
+        try {
+            const tags = await db.Tag.find({});
+            res.status(200).json(tags);
+        } catch (err) {
             res.status(500).json(err);
         }
     },
