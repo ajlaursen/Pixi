@@ -20,6 +20,10 @@ function removeFromCart(product){
   cart.onRemove(product, cartItems, setCartItems)
 }
 
+function price(product) {
+  return cart.itemsPrice(product, cartItems, setCartItems)
+}
+
 console.log(cartItems)
 
   return (
@@ -42,7 +46,7 @@ console.log(cartItems)
             <Route 
           exact
           path="/cart"
-          render={(props)=> (<Cart cartItems={cartItems} setCartItems={setCartItems} removeFromCart={removeFromCart} {...props} />)}
+          render={(props)=> (<Cart cartItems={cartItems} setCartItems={setCartItems} removeFromCart={removeFromCart} price={price} {...props} />)}
           />
              <Route 
           exact
