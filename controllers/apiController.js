@@ -1,5 +1,5 @@
 const db = require('../models');
-// const { Image, Like, Orders, Post, Tag, User, UserAuditLog } = require('../models');
+const ObjectID = require('mongodb').ObjectID;
 
 module.exports = {
     getImages: async function (req, res) {
@@ -58,6 +58,25 @@ module.exports = {
             db.Image.create(newImage);
             res.status(200).json({ message: 'Image added' });
         } catch (err) {
+            res.status(500).json(err);
+        }
+    },
+    addTag: async function (req, res) {
+        try {
+            const tag = req.body.tagName;
+            const imageId = req.body.imageId;
+            const newTag = await db.Tag.update(
+                { tag: tag },
+                {
+                    $push: {
+                        images: ObjectID(imageId),
+                    },
+                }
+            );
+            console.log(newTag);
+            res.status(200).json(newTag);
+        } catch (err) {
+            console.log(err);
             res.status(500).json(err);
         }
     },

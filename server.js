@@ -2,9 +2,10 @@ const express = require('express');
 const cors = require('cors')
 const mongoose = require('mongoose');
 const routes = require('./routes');
+const session = require('express-session');
+
 const app = express();
 const PORT = process.env.PORT || 3001;
-const session = require('express-session');
 
 const sess = {
     secret: 'Pixi Darkmode',

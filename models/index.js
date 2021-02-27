@@ -5,7 +5,6 @@ module.exports = {
     Cart: require('./Cart'),
     Orders: require('./Orders'),
     Post: require('./Post'),
-    Product: require('./Product'),
     Tag: require('./Tag'),
     UserAuditLog: require('./UserAuditLog'),
 };
