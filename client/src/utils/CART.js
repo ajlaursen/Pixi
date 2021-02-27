@@ -15,7 +15,7 @@ function onAdd (product, cartItems, setCartItems)  {
 function onRemove(product, cartItems, setCartItems) {
     const exists = cartItems.find((x) => x.id === product.id)
     if (exists.qty === 1){
-        setCartItems(cartItems.fitler((x) => x.id !==product.id));
+        setCartItems(cartItems.filter((x) => x.id !==product.id));
     }else{
         setCartItems(cartItems.map( (x) => 
             x.id === product.id ? {...exists, qty: exists.qty -1} : x

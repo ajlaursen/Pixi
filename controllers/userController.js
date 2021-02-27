@@ -67,7 +67,6 @@ module.exports = {
     createUser: async function (req, res) {
         try {
             const newUser = req.body;
-            console.log(newUser);
             newUser.password = await bcrypt.hash(req.body.password, 10);
             const addedUser = await User.create(newUser);
             newUser.passwordChanged = true;
@@ -78,12 +77,10 @@ module.exports = {
                 res.status(200).json({ message: 'User Creation Success!' });
             });
         } catch (err) {
-            console.log(err);
             res.status(500).json(err);
         }
     },
     updateUser: async function (req, res) {
-        console.log('-------------------------------------');
         try {
             const userId = req.session.user_id;
             const password = req.body.password;
@@ -134,7 +131,6 @@ module.exports = {
                 res.status(404).json({ message: 'user not updated' });
             }
         } catch (err) {
-            console.log(err);
             res.status(500).json(err);
         }
     },

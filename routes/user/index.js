@@ -8,8 +8,4 @@ router.get('/logout', checkAuth, USER.logout);
 
 router.get('/like/:id', checkAuth, USER.like);
 
-router.post('/new', USER.createUser);
-
-router.post('/update', checkAuth, USER.updateUser);
-
 module.exports = router;
