@@ -44,19 +44,19 @@ module.exports = {
         try {
             const userId = req.session.user_id;
             const imageId = req.params.id;
-            const liked = await Like.count({
-                imageId: imageId,
-                userId: userId,
+            const liked = await Like.countDocuments({
+                imageId: ObjectID(imageId),
+                userId: ObjectID(userId),
             });
             if (liked === 0) {
-                Like.create({
-                    imageId: imageId,
-                    userId: userId,
+                await Like.create({
+                    imageId: ObjectID(imageId),
+                    userId: ObjectID(userId),
                 });
             } else {
-                Like.deleteOne({
-                    imageId: imageId,
-                    userId: userId,
+                await Like.deleteOne({
+                    imageId: ObjectID(imageId),
+                    userId: ObjectID(userId),
                 });
             }
             res.status(200).json({ message: 'like successful' });
