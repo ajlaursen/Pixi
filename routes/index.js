@@ -8,7 +8,6 @@ router.use('/api', apiRoutes);
 // User Routes
 router.use('/user', userRoutes);
 
-router.use('/posts', postRoutes)
 
 // If no API routes are hit, send the React app
 router.get('*', (req, res) => {

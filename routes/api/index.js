@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const API = require('../../controllers/apiController.js');
 const checkAuth = require('../../utils/auth');
+const files = require('../files')
 
 router.get('/allimages', checkAuth, API.getImages);
 
@@ -11,5 +12,7 @@ router.get('/images', checkAuth, API.getImagesUser);
 router.get('/myimages', checkAuth, API.getOwnedImages);
 
 router.post('/neworder', checkAuth, API.postOrder);
+
+router.use('/files', files)
 
 module.exports = router;
