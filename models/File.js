@@ -17,8 +17,6 @@ const fileSchema = new Schema({
     location: {
         type: String,
     },
-
-    
 });
 
 const File = mongoose.model('File', fileSchema);

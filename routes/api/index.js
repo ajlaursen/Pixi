@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const API = require('../../controllers/apiController.js');
 const checkAuth = require('../../utils/auth');
-const files = require('../files')
+const files = require('../files');
 
 router.get('/allimages', checkAuth, API.getImages);
 
@@ -13,8 +13,7 @@ router.get('/getAllTags', checkAuth, API.getAllTags);
 
 router.post('/neworder', checkAuth, API.postOrder);
 
-
-router.use('/files', files)
+router.use('/files', files);
 
 router.post('/image', checkAuth, API.postImage);
 
@@ -23,6 +22,5 @@ router.post('/addtag', checkAuth, API.addTag);
 router.post('/addimagetag', checkAuth, API.addImageTag);
 
 router.post('/removeimagetag', checkAuth, API.removeImageTag);
-
 
 module.exports = router;
