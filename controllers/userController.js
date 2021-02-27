@@ -1,6 +1,7 @@
 const { User, Like, UserAuditLog } = require('../models');
 // const { Image, Like, Orders, Post, Tag, User, UserAuditLog } = require('../models');
 const bcrypt = require('bcrypt');
+const ObjectID = require('mongodb').ObjectID;
 
 module.exports = {
     login: async function (req, res) {
@@ -86,24 +87,47 @@ module.exports = {
         try {
             const userId = req.session.user_id;
             const password = req.body.password;
-            console.log('password', password);
             const user = await User.findById(userId);
-            // const updatedUser = { ...req.body, _id: userId };
+
             const updatedUser = { ...user, ...req.body };
-            const passVal = await bcrypt.compare(password, user.password);
-            console.log(updatedUser);
-            if (!passVal) {
-                updatedUser.passwordChanged = true;
+
+            if (password) {
+                const passVal = await bcrypt.compare(password, user.password);
+
+                if (!passVal) {
+                    updatedUser.passwordChanged = true;
+                    updatedUser.password = await bcrypt.hash(
+                        req.body.password,
+                        10
+                    );
+                } else {
+                    updatedUser.passwordChanged = false;
+                    updatedUser.password = user.password;
+                }
             } else {
                 updatedUser.passwordChanged = false;
+                updatedUser.password = user.password;
             }
+
             await UserAuditLog.create(updatedUser);
+
             const updated = await User.updateOne(
-                { _id: userId },
-                { updatedUser }
+                { _id: ObjectID(userId) },
+                {
+                    firstName: updatedUser.firstName,
+                    lastName: updatedUser.lastName,
+                    username: updatedUser.username,
+                    password: updatedUser.password,
+                    email: updatedUser.email,
+                    url: updatedUser.url,
+                    bio: updatedUser.bio,
+                    image: updatedUser.image,
+                    posts: updatedUser.posts,
+                    followers: updatedUser.followers,
+                    following: updatedUser.following,
+                    tags: updatedUser.tags,
+                }
             );
-            console.log(updated);
-            console.log(updated.nModified);
             if (updated.nModified === 1) {
                 res.status(200).json({ message: 'user updated' });
             } else {
