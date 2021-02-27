@@ -21,17 +21,16 @@ module.exports = {
     },
     getOwnedImages: async function (req, res) {
         try {
-            console.log('-------------------------------------');
             const userId = req.session.user_id;
-            console.log('userid', userId);
-            // const images = await db.Orders.find({ userId: userId });
-            const images = await db.Orders.find({ userId: userId }).populate(
-                'photos'
-            );
-            console.log(images);
+            const images = await db.Orders.find({ userId: userId }).populate({
+                path: 'photos',
+                model: db.Image,
+                // options: {
+                //     limit: 99,
+                // },
+            });
             res.status(200).json(images);
         } catch (err) {
-            console.log(err);
             res.status(500).json(err);
         }
     },
