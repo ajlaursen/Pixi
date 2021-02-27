@@ -2,12 +2,8 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const postSchema = new Schema({
-    description: {
-        type: String,
-    },
-
-    imageId: {
+const CartSchema = new Schema({
+    productId: {
         type: Schema.Types.ObjectId,
         ref: 'Image',
     },
@@ -21,13 +17,8 @@ const postSchema = new Schema({
         type: Date,
         default: Date.now,
     },
-
-    updateDate: {
-        type: Date,
-        default: Date.now,
-    },
 });
 
-const Post = mongoose.model('Post', postSchema);
+const Cart = mongoose.model('Cart', CartSchema);
 
-module.exports = Post;
+module.exports = Cart;

@@ -31,6 +31,7 @@
     "eslint": "^7.20.0",
     "express": "^4.16.3",
     "express-session": "^1.17.1",
+    "faker": "^5.4.0",
     "if-env": "^1.0.4",
     "mongoose": "^5.3.16",
     "mongoose-currency": "^0.2.0",

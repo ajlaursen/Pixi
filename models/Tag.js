@@ -7,7 +7,7 @@ const tagSchema = new Schema({
 
     images: [
         {
-            type: mongoose.Schema.Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: 'Image',
         },
     ],
