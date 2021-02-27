@@ -21,7 +21,7 @@ function removeFromCart(product){
 }
 
 function price(product) {
-cart.itemsPrice(product, cartItems, setCartItems)
+  return cart.itemsPrice(product, cartItems, setCartItems)
 }
 
 console.log(cartItems)

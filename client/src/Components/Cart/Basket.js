@@ -3,15 +3,15 @@ import React from 'react'
 
 function Basket(props) {
         
-    function price(item) {
-        props.price(item)
-    }
+    
     
 
     function removeFromCart(item) {
         props.removeFromCart(item)
 
     }
+
+    const subTotal = props.price(props.cartItems)
 
     return (
 
@@ -35,7 +35,8 @@ function Basket(props) {
                         </thead>
                         <tbody>
                         {props.cartItems.map(item => {
-                    return (
+             const totalPrice = item.price * item.qty      
+              return (
                        
                         <tr key={item.id}>
                         <td className="hidden pb-4 md:table-cell">
@@ -64,12 +65,12 @@ function Basket(props) {
                         </td>
                         <td className="hidden text-right md:table-cell">
                             <span className="text-sm lg:text-base font-medium">
-                                {item.price}
+                                
       </span>
                         </td>
                         <td className="text-right">
                             <span className="text-sm lg:text-base font-medium">
-                                {item.total}
+                                {totalPrice}
       </span>
                         </td>
                     </tr>
@@ -78,7 +79,7 @@ function Basket(props) {
                 })}
                         </tbody>
                     </table>
-                    <hr className="pb-6 mt-6" />
+                    {/* <hr className="pb-6 mt-6" />
                     <div className="my-4 mt-6 -mx-2 lg:flex">
                         <div className="lg:px-2 lg:w-1/2">
                             <div className="p-4 bg-gray-100 rounded-full">
@@ -106,11 +107,11 @@ function Basket(props) {
                                 <p className="mb-4 italic">If you have some information for the seller you can leave them in the box below</p>
                                 <textarea className="w-full h-24 p-2 bg-gray-100 rounded"></textarea>
                             </div>
-                        </div>
-                        <div className="lg:px-2 lg:w-1/2">
+                        </div> */}
+                        {/* <div className="lg:px-2 lg:w-1/2">
                             <div className="p-4 bg-gray-100 rounded-full">
                                 <h1 className="ml-2 font-bold uppercase">Order Details</h1>
-                            </div>
+                            </div> */}
                             <div className="p-4">
                                 <p className="mb-6 italic">Shipping and additionnal costs are calculated based on values you have entered</p>
                                 <div className="flex justify-between border-b">
@@ -118,10 +119,10 @@ function Basket(props) {
                                         Subtotal
                 </div>
                                     <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
-                                        148,827.53€
+                                        {subTotal}
                 </div>
                                 </div>
-                                <div className="flex justify-between pt-4 border-b">
+                                {/* <div className="flex justify-between pt-4 border-b">
                                     <div className="flex lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-gray-800">
                                         <form action="" method="POST">
                                             <button type="submit" className="mr-2 mt-1 lg:mt-2">
@@ -132,16 +133,16 @@ function Basket(props) {
                   </div>
                                     <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-green-700">
                                         -133,944.77€
-                  </div>
+                  </div> */}
                                 </div>
-                                <div className="flex justify-between pt-4 border-b">
-                                    <div className="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
+                                {/* <div className="flex justify-between pt-4 border-b"> */}
+                                    {/* <div className="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
                                         New Subtotal
                   </div>
                                     <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
                                         14,882.75€
-                  </div>
-                                </div>
+                  </div> */}
+                                {/* </div> */}
                                 <div className="flex justify-between pt-4 border-b">
                                     <div className="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
                                         Tax
@@ -168,8 +169,8 @@ function Basket(props) {
                         </div>
                     </div>
 
-                </div>          </div>
-        </div>
+                //  </div>          </div> 
+        //  </div>
 
 
 
