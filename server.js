@@ -1,10 +1,11 @@
 const express = require('express');
-
+const cors = require('cors');
 const mongoose = require('mongoose');
 const routes = require('./routes');
+const session = require('express-session');
+
 const app = express();
 const PORT = process.env.PORT || 3001;
-const session = require('express-session');
 
 const sess = {
     secret: 'Pixi Darkmode',
@@ -22,6 +23,7 @@ app.use(express.json());
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
 }
+app.use(cors());
 // Add routes, both API and view
 app.use(routes);
 

@@ -1,5 +1,4 @@
-const { User, Like, UserAuditLog } = require('../models');
-// const { Image, Like, Orders, Post, Tag, User, UserAuditLog } = require('../models');
+const db = require('../models');
 const bcrypt = require('bcrypt');
 const ObjectID = require('mongodb').ObjectID;
 
@@ -8,7 +7,7 @@ module.exports = {
         try {
             const email = req.body.email;
             const password = req.body.password;
-            const user = await User.findOne({ email: email });
+            const user = await db.User.findOne({ email: email });
 
             if (!user) {
                 res.status(404).json({ message: 'Login failed!' });
@@ -44,17 +43,17 @@ module.exports = {
         try {
             const userId = req.session.user_id;
             const imageId = req.params.id;
-            const liked = await Like.countDocuments({
+            const liked = await db.Like.countDocuments({
                 imageId: ObjectID(imageId),
                 userId: ObjectID(userId),
             });
             if (liked === 0) {
-                await Like.create({
+                await db.Like.create({
                     imageId: ObjectID(imageId),
                     userId: ObjectID(userId),
                 });
             } else {
-                await Like.deleteOne({
+                await db.Like.deleteOne({
                     imageId: ObjectID(imageId),
                     userId: ObjectID(userId),
                 });
@@ -68,15 +67,16 @@ module.exports = {
         try {
             const newUser = req.body;
             newUser.password = await bcrypt.hash(req.body.password, 10);
-            const addedUser = await User.create(newUser);
+            const addedUser = await db.User.create(newUser);
             newUser.passwordChanged = true;
-            await UserAuditLog.create(newUser);
+            await db.UserAuditLog.create(newUser);
             req.session.save(() => {
                 req.session.user_id = addedUser._id;
                 req.session.logged_in = true;
                 res.status(200).json({ message: 'User Creation Success!' });
             });
         } catch (err) {
+            console.log(err);
             res.status(500).json(err);
         }
     },
@@ -84,7 +84,7 @@ module.exports = {
         try {
             const userId = req.session.user_id;
             const password = req.body.password;
-            const user = await User.findById(userId);
+            const user = await db.User.findById(userId);
 
             const updatedUser = { ...user, ...req.body };
 
@@ -106,9 +106,9 @@ module.exports = {
                 updatedUser.password = user.password;
             }
 
-            await UserAuditLog.create(updatedUser);
+            await db.UserAuditLog.create(updatedUser);
 
-            const updated = await User.updateOne(
+            const updated = await db.User.updateOne(
                 { _id: ObjectID(userId) },
                 {
                     firstName: updatedUser.firstName,

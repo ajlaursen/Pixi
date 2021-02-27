@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-require('mongoose-currency').loadType(mongoose);
 const Schema = mongoose.Schema;
+require('mongoose-currency').loadType(mongoose);
 const Currency = mongoose.Types.Currency;
 
 const imageSchema = new Schema({

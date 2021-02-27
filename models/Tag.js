@@ -1,16 +1,15 @@
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema;
 
 const tagSchema = new Schema({
     tag: String,
 
-    images: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Image',
-        },
-    ],
+    // images: [
+    //     {
+    //         type: Schema.Types.ObjectId,
+    //         ref: 'Image',
+    //     },
+    // ],
 });
 
 const Tag = mongoose.model('Tag', tagSchema);
