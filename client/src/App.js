@@ -8,11 +8,8 @@ import card from './Components/Cards/card';
 import Basket from './Components/Cart/Basket';
  import Home from './Pages/Home';
  import Cart from './Pages/Cart';
-<<<<<<< HEAD
  import SignupLogin from './Pages/SignupLogin'
 
-=======
->>>>>>> main
 // import Seller from './pages/seller';
 // import Signin from './Pages/SignupLogin'
 import { cart } from './utils/CART'
@@ -44,15 +41,11 @@ console.log(cartItems)
           exact
           path="/"
           render={(props)=> (<Home cartItems={cartItems}  addToCart={addToCart} {...props} />)}
-<<<<<<< HEAD
           />
           <Route 
           exact
           path="/login"
           render={(props)=> (<SignupLogin cartItems={cartItems} setCartItems={setCartItems} {...props} />)}
-=======
-
->>>>>>> main
           />
             <Route 
           exact

@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import API from '../utils/API'
 
-<<<<<<< HEAD
 //Parker Notes:
 // Need to confirm repeat password on front end.
 // Going to be modified testing routes
 
 
 
-=======
->>>>>>> main
 const Signup = () => {
 
   const [user, setUser] = useState({
@@ -44,13 +41,8 @@ const Signup = () => {
               <div className="flex justify-between gap-3">
                 <span className="w-1/2">
                   <label
-<<<<<<< HEAD
                     for="firstName"
                     className="hover:border-b-8 block text-xs font-semibold text-gray-600 uppercase"
-=======
-                    for="firstname"
-                    class="hover:border-b-8 block text-xs font-semibold text-gray-600 uppercase"
->>>>>>> main
                   >
                     First Name
                   </label>
@@ -68,13 +60,8 @@ const Signup = () => {
                 </span>
                 <span className="w-1/2">
                   <label
-<<<<<<< HEAD
                     for="lastName"
                     className="block text-xs font-semibold text-gray-600 uppercase"
-=======
-                    for="lastname"
-                    class="block text-xs font-semibold text-gray-600 uppercase"
->>>>>>> main
                   >
                     Last name
                   </label>
