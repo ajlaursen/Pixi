@@ -16,6 +16,8 @@ router.post('/image', checkAuth, API.postImage);
 
 router.post('/addtag', checkAuth, API.addTag);
 
-router.post('/addImageTag', checkAuth, API.addImageTag);
+router.post('/addimagetag', checkAuth, API.addImageTag);
+
+router.post('/removeimagetag', checkAuth, API.removeImageTag);
 
 module.exports = router;
