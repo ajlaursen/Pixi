@@ -1,13 +1,11 @@
 import axios from 'axios';
-axios.defaults.baseURL = "http://localhost:3001"
 
 export default {
   createUser: function (user) {
     return axios({
       method: 'post',
-      url: '/user/signup',
+      url: '/user/new',
       data: user,
-      headers: { 'Content-Type': 'multipart/form-data' }
     }).then(function (res) {
       console.log(res);
     })
@@ -17,7 +15,16 @@ export default {
   
   },
 
-  login: function () {
-    return axios.post('/user/login');
+  login: function (user) {
+    return axios({
+      method: 'post',
+      url: '/user/login',
+      data: user,
+    }).then(function (res) {
+      console.log(res);
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
   },
 };

@@ -9,7 +9,7 @@ import card from './Components/Cards/card';
 import Basket from './Components/Cart/Basket';
  import Home from './Pages/Home';
  import Cart from './Pages/Cart';
- import SignupLogin from './Pages/'
+ import SignupLogin from './Pages/SignupLogin'
 
 // import Seller from './pages/seller';
 // import Signin from './Pages/SignupLogin'

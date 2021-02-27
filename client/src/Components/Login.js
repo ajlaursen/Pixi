@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import API from '../utils/API'
 
 const Login = () => {
+
+  const [user, setUser] = useState({
+    email: "",
+    password: ""
+  })
+
   function handleUserLogin(event) {
     event.preventDefault();
-    let user = new FormData(event.target);
-    for (const [name, value] of user) {
-      console.log(name, value);
-    }
-    console.log(...user)
-    API.login()
+    API.login(user)
   }
 
   return (
@@ -36,6 +37,8 @@ const Login = () => {
               autocomplete="email"
               className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
               required
+              value={user.email}
+              onChange={e => setUser({ ...user, email: e.target.value })}
             />
             <label
               for="password"
@@ -51,6 +54,8 @@ const Login = () => {
               autocomplete="current-password"
               className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
               required
+              value={user.password}
+              onChange={e => setUser({ ...user, password: e.target.value })}
             />
             <button
               type="submit"

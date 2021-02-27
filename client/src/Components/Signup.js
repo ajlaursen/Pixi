@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 import API from '../utils/API'
 
 //Parker Notes:
@@ -8,11 +8,20 @@ import API from '../utils/API'
 
 
 const Signup = () => {
+
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    passwordConf: ""
+  })
+
   function handleUserSignup(event){
     event.preventDefault();
-    let user = new FormData(event.target);
+    // let user = new FormData(event.target);
     console.log(user);
-    API.createUser(user);
+    if(user.password === user.passwordConf) API.createUser(user);
   }
   
   return (
@@ -45,6 +54,8 @@ const Signup = () => {
                     autocomplete="given-name"
                     className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
                     required
+                    value={user.firstName}
+              onChange={e => setUser({ ...user, firstName: e.target.value })}
                   />
                 </span>
                 <span className="w-1/2">
@@ -62,6 +73,8 @@ const Signup = () => {
                     autocomplete="family-name"
                     className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
                     required
+                    value={user.lastName}
+              onChange={e => setUser({ ...user, lastName: e.target.value })}
                   />
                 </span>
               </div>
@@ -79,6 +92,8 @@ const Signup = () => {
                 autocomplete="email"
                 className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
                 required
+                value={user.email}
+              onChange={e => setUser({ ...user, email: e.target.value })}
               />
               <label
                 for="password"
@@ -94,6 +109,8 @@ const Signup = () => {
                 autocomplete="new-password"
                 className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
                 required
+                value={user.password}
+              onChange={e => setUser({ ...user, password: e.target.value })}
               />
               <label
                 for="password-confirm"
@@ -109,6 +126,8 @@ const Signup = () => {
                 autocomplete="new-password"
                 className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
                 required
+                value={user.passwordConf}
+              onChange={e => setUser({ ...user, passwordConf: e.target.value })}
               />
               <button
                 type="submit"
