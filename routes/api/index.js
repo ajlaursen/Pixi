@@ -12,6 +12,8 @@ router.get('/getAllTags', checkAuth, API.getAllTags);
 
 router.post('/neworder', checkAuth, API.postOrder);
 
+router.post('/image', checkAuth, API.postImage);
+
 router.post('/addtag', checkAuth, API.addTag);
 
 router.post('/addImageTag', checkAuth, API.addImageTag);
