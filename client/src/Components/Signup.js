@@ -1,9 +1,5 @@
 import React from 'react'
 
-//Parker Notes:
-// Need to confirm repeat password on front end.
-// Going to be modified testing routes
-
 const Signup = () => {
   return (
     <div class="flex laptop:mx-auto w-auto laptop:w-1/3 p-5 m-10 justify-evenly place-items-center">
@@ -22,15 +18,15 @@ const Signup = () => {
               <div class="flex justify-between gap-3">
                 <span class="w-1/2">
                   <label
-                    for="firstName"
+                    for="firstname"
                     class="hover:border-b-8 block text-xs font-semibold text-gray-600 uppercase"
                   >
                     First Name
                   </label>
                   <input
-                    id="firstName"
+                    id="firstname"
                     type="text"
-                    name="firstName"
+                    name="firstname"
                     placeholder="Cool"
                     autocomplete="given-name"
                     class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
@@ -39,15 +35,15 @@ const Signup = () => {
                 </span>
                 <span class="w-1/2">
                   <label
-                    for="lastName"
+                    for="lastname"
                     class="block text-xs font-semibold text-gray-600 uppercase"
                   >
                     Last name
                   </label>
                   <input
-                    id="lastName"
+                    id="lastname"
                     type="text"
-                    name="lastName"
+                    name="lastname"
                     placeholder="Cat"
                     autocomplete="family-name"
                     class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"

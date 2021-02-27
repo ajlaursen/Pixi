@@ -5,8 +5,6 @@ const checkAuth = require('../../utils/auth');
 
 router.get('/allimages', checkAuth, API.getImages);
 
-router.post('/image', checkAuth, API.postImage);
-
 router.get('/images', checkAuth, API.getImagesUser);
 
 router.get('/myimages', checkAuth, API.getOwnedImages);
