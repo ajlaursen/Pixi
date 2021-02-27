@@ -21,8 +21,11 @@ function App() {
 
 function addToCart (product) {
   cart.onAdd(product, cartItems, setCartItems)
-  
 }
+function removeFromCart(product){
+  cart.onRemove(product, cartItems, setCartItems)
+}
+
 console.log(cartItems)
 
   return (
@@ -41,7 +44,7 @@ console.log(cartItems)
             <Route 
           exact
           path="/cart"
-          render={(props)=> (<Cart cartItems={cartItems} setCartItems={setCartItems} {...props} />)}
+          render={(props)=> (<Cart cartItems={cartItems} setCartItems={setCartItems} removeFromCart={removeFromCart} {...props} />)}
           />
              <Route 
           exact

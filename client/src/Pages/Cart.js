@@ -4,7 +4,7 @@ import Basket from '../Components/Cart/Basket';
 function Cart(props) {
     return (
         <div>
-            <Basket cartItems={props.cartItems}></Basket>
+            <Basket {...props}></Basket>
         </div>
     )
 }
