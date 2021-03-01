@@ -17,13 +17,13 @@ const Signup = () => {
     passwordConf: ""
   })
 
-  function handleUserSignup(event){
+  function handleUserSignup(event) {
     event.preventDefault();
     // let user = new FormData(event.target);
     console.log(user);
-    if(user.password === user.passwordConf) API.createUser(user);
+    if (user.password === user.passwordConf) API.createUser(user);
   }
-  
+
   return (
     <div className="flex laptop:mx-auto w-auto laptop:w-1/3 p-5 m-10 justify-evenly place-items-center">
       <div className="container bg-pixi p-10 m-10 rounded-xl shadow-2xl">
@@ -31,9 +31,9 @@ const Signup = () => {
         <div className="grid place-items-center">
           <div className="p-4 bg-pixi">
             <h1 className="text-xl font-semibold">
-              Hey there 👋 , 
+              Hey there 👋 ,
               <span className="font-normal">
-                 please fill in your information to build an awesome character
+                please fill in your information to build an awesome character
                 sheet!
               </span>
             </h1>
@@ -55,7 +55,7 @@ const Signup = () => {
                     className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
                     required
                     value={user.firstName}
-              onChange={e => setUser({ ...user, firstName: e.target.value })}
+                    onChange={e => setUser({ ...user, firstName: e.target.value })}
                   />
                 </span>
                 <span className="w-1/2">
@@ -74,7 +74,7 @@ const Signup = () => {
                     className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
                     required
                     value={user.lastName}
-              onChange={e => setUser({ ...user, lastName: e.target.value })}
+                    onChange={e => setUser({ ...user, lastName: e.target.value })}
                   />
                 </span>
               </div>
@@ -93,7 +93,7 @@ const Signup = () => {
                 className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
                 required
                 value={user.email}
-              onChange={e => setUser({ ...user, email: e.target.value })}
+                onChange={e => setUser({ ...user, email: e.target.value })}
               />
               <label
                 for="password"
@@ -110,7 +110,7 @@ const Signup = () => {
                 className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
                 required
                 value={user.password}
-              onChange={e => setUser({ ...user, password: e.target.value })}
+                onChange={e => setUser({ ...user, password: e.target.value })}
               />
               <label
                 for="password-confirm"
@@ -127,7 +127,7 @@ const Signup = () => {
                 className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
                 required
                 value={user.passwordConf}
-              onChange={e => setUser({ ...user, passwordConf: e.target.value })}
+                onChange={e => setUser({ ...user, passwordConf: e.target.value })}
               />
               <button
                 type="submit"
