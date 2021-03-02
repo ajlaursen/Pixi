@@ -33,10 +33,14 @@ export function LoginPassport() {
 
   useEffect(() => {
     if (auth) {
-      history.push('/account');
+        if (auth.token === undefined || !auth) {
+            history.push('/login');
+        } else {
+            history.push('/account');
+        }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [auth]);
 
   function _handleChange(e) {
     const { name, value } = e.target;
@@ -54,14 +58,6 @@ export function LoginPassport() {
     API.login(user)
       .then((token) => {
         setAuth({ ...auth, token });
-        console.log(auth);
-          if (auth.token === undefined || !auth) {
-          setTimeout(() => {
-            history.push('/login');
-          });
-        } else {
-          history.push('/account');
-        }
       })
       .catch((err) => {
         // probably need a better way to notify on this error
@@ -76,14 +72,6 @@ export function LoginPassport() {
       API.createUser(userSignup)
         .then((token) => {
           setAuth({ ...auth, token });
-          console.log(auth);
-            if (auth.token === undefined || !auth) {
-                setTimeout(() => {
-                    history.push('/login');
-                });
-            } else {
-                history.push('/account');
-            }
         })
         .catch((err) => {
           // probably need a better way to notify on this error
@@ -97,21 +85,21 @@ export function LoginPassport() {
 
   if (login === 'login') {
     return (
-        <Login
-          _handleSubmit={_handleSubmit}
-          _handleChange={_handleChange}
-          user={user}
-          togglePage={togglePage}
-        />
+      <Login
+        _handleSubmit={_handleSubmit}
+        _handleChange={_handleChange}
+        user={user}
+        togglePage={togglePage}
+      />
     );
   } else {
     return (
-        <Signup
-          _handleUserSignup={_handleUserSignup}
-          _handleChangeSignup={_handleChangeSignup}
-          userSignup={userSignup}
-          togglePage={togglePage}
-        />
+      <Signup
+        _handleUserSignup={_handleUserSignup}
+        _handleChangeSignup={_handleChangeSignup}
+        userSignup={userSignup}
+        togglePage={togglePage}
+      />
     );
   }
 }
