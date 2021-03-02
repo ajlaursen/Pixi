@@ -34,10 +34,12 @@ const imageSchema = new Schema({
 
     free: {
         type: Boolean,
+        default: false,
     },
 
     price: {
         type: Currency,
+        default: 99,
     },
 
     creationDate: {
