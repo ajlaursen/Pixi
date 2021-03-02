@@ -34,7 +34,7 @@ const AccountPhotoUpload = (props) => {
 
   return (
     <>
-      <div className="col-span-12 laptop:border-solid laptop:border-l laptop:border-black laptop:border-opacity-25 h-full pb-12 laptop:col-span-10">
+      <div className={`col-span-12 laptop:border-solid laptop:border-l laptop:border-black laptop:border-opacity-25 h-full pb-12 laptop:col-span-10 ${props.hidden}`}>
         <div className="px-4 pt-4">
           <form
             action="#"

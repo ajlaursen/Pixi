@@ -1,5 +1,4 @@
 import React from 'react'
-import Account from '../Components/Account';
 import Card from '../Components/Cards/';
 
 
@@ -7,7 +6,7 @@ import Card from '../Components/Cards/';
 export function Home(props) {
   return (
     <>
-      <Account />
+
       <div className="flex flex-col tablet:flex-row justify-center flex-wrap">
 
         <Card addToCart={props.addToCart} />
