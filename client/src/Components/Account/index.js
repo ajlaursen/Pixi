@@ -1,9 +1,52 @@
-import React from 'react';
-import AccountContent from './AccountInfoContent'
+import React, { useState, Component } from 'react';
+import AccountContent from './AccountInfoContent';
 import AccountPhotoUpload from './AccountPhotoUpload';
-import AccountUpdateContent from './AccountUpdateContent'
+import AccountUpdateContent from './AccountUpdateContent';
 
-function Account() {
+function AccountHolderDiv() {
+  const [state, setState] = useState({
+    accountInfo: '',
+    accountUpdate: 'hidden',
+    photoUpload: 'hidden',
+    buttonAccountInfo: 'bg-buttonColor text-white',
+    buttonAccountUpdate: 'bg-pixi text-black',
+    buttonPhotoUpload: 'bg-pixi text-black',
+  });
+
+
+
+  const accountHidden = (num) => {
+    console.log(state);
+    if (num == 1) {
+      setState({
+        accountInfo: '',
+        accountUpdate: 'hidden',
+        photoUpload: 'hidden',
+        buttonAccountInfo: 'bg-buttonColor text-white',
+        buttonAccountUpdate: 'bg-pixi text-black',
+        buttonPhotoUpload: 'bg-pixi text-black',
+      });
+    } else if (num == 2) {
+      setState({
+        accountInfo: 'hidden',
+        accountUpdate: '',
+        photoUpload: 'hidden',
+        buttonAccountInfo: 'bg-pixi text-black',
+        buttonAccountUpdate: 'bg-buttonColor text-white',
+        buttonPhotoUpload: 'bg-pixi text-black',
+      });
+    } else if (num == 3) {
+      setState({
+        accountInfo: 'hidden',
+        accountUpdate: 'hidden',
+        photoUpload: '',
+        buttonAccountInfo: 'bg-pixi text-black',
+        buttonAccountUpdate: 'bg-pixi text-black',
+        buttonPhotoUpload: 'bg-buttonColor text-white',
+      });
+    }
+  };
+
   return (
     <>
       <div className="w-full laptop:w-3/4 relative mt-4 shadow-2xl rounded my-24 mx-auto overflow-hidden">
@@ -24,34 +67,34 @@ function Account() {
         </div>
         <div className="grid grid-cols-12 bg-white ">
           <div className="col-span-12 w-full px-3 py-6 justify-center flex space-x-4 border-b border-solid laptop:space-x-0 laptop:space-y-4 laptop:flex-col laptop:col-span-2 laptop:justify-start ">
-            <a
-              href="#"
-              className="text-sm p-2 bg-indigo-900 text-white text-center rounded font-bold"
+            <button
+              className={`text-sm p-2   text-center rounded font-bold hover:bg-cardColor hover:text-gray-200 ${state.buttonAccountInfo}`}
+              onClick={() => accountHidden(1)}
             >
               Account
-            </a>
+            </button>
 
-            <a
-              href="#"
-              className="text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
+            <button
+              className={`text-sm p-2  text-center rounded font-semibold hover:bg-cardColor hover:text-gray-200 ${state.buttonAccountUpdate}`}
+              onClick={() => accountHidden(2)}
             >
               Update Information
-            </a>
+            </button>
 
-            <a
-              href="#"
-              className="text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200"
+            <button
+              className={`text-sm p-2  text-center rounded font-semibold hover:bg-cardColor hover:text-gray-200 ${state.buttonPhotoUpload}`}
+              onClick={() => accountHidden(3)}
             >
               Upload Photos
-            </a>
+            </button>
           </div>
-          <AccountPhotoUpload />
+          <AccountContent hidden={state.accountInfo} />
+          <AccountUpdateContent hidden={state.accountUpdate} />
+          <AccountPhotoUpload hidden={state.photoUpload} />
         </div>
       </div>
-      <AccountContent />
-      <AccountUpdateContent />
     </>
   );
 }
 
-export default Account;
+export default AccountHolderDiv;
