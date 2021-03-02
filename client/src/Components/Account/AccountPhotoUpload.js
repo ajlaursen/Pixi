@@ -2,35 +2,32 @@ import axios from 'axios';
 import React, { useState } from 'react';
 
 const AccountPhotoUpload = (props) => {
-  const [state, setState] = useState({ file: null });
-  const [formState, setFormState] = useState([])
+  const [state, setState] = useState({ file: '' });
+  const [formState, setFormState] = useState({});
 
   function handleFile(event) {
     const file = event.target.files[0];
     setState({ ...state, file });
   }
 
-  function handleForm(event){
-    const {name, value} = event.target
-
-    setFormState( {
-      [name]: value
-    })
+  function handleForm(event) {
+    const { name, value } = event.target;
+    setFormState({ ...formState, [name]: value });
   }
 
   function handleClick(event) {
     event.preventDefault();
     const formData = new FormData();
     formData.append('image', state.file);
-    console.log(formData)
-    axios.post('/api/files', formData)
-    .then((res) =>
+    console.log(formState);
+    axios.post('/api/files', formData).then((res) =>
       axios.post('/api/image', {
-        "location": res.data.location,
-        "title": formState.title,
-        "description": formState.description,
-        "free": 1,
-        "price": formState.price
+        location: res.data.location,
+        title: formState.title,
+        description: formState.description,
+        free: 0,
+        price: formState.price,
+        tags: [formState.tags],
       })
     );
   }
@@ -49,14 +46,16 @@ const AccountPhotoUpload = (props) => {
               <hr />
             </div>
             <div className="text-lg font-thin text-white   flex ">
-              <div  className="bg-buttonColor rounded-xl shadow-xl text-center  px-3 py-1 cursor-pointer relative">
+              <div className="bg-buttonColor rounded-xl shadow-xl text-center  px-3 py-1 cursor-pointer relative">
                 <input
                   type="file"
                   onChange={handleFile}
                   id="file-upload"
                   className="cursor-pointer block opacity-0 pin-r pin-t "
                 />
-                <span className="top-2 left-50% absolute upload-button">Upload Photo</span>
+                <span className="top-2 left-50% absolute upload-button">
+                  Upload Photo
+                </span>
               </div>
             </div>
             <div className="form-item">
@@ -64,9 +63,10 @@ const AccountPhotoUpload = (props) => {
               <input
                 type="text"
                 name="title"
-                defaultValue="Photo Title"
+                placeholder="Photo Title"
                 className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
                 value={formState.title}
+                defaultValue=""
                 onChange={handleForm}
               />
             </div>
@@ -74,25 +74,28 @@ const AccountPhotoUpload = (props) => {
             <div className="form-item w-full">
               <label className="text-xl ">Description</label>
               <textarea
+                name="description"
+                value={formState.description}
+                defaultValue=""
+                onChange={handleForm}
                 cols="30"
                 rows="10"
                 className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
-              >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
-                natus nobis odio. Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Accusantium, eveniet fugiat? Explicabo
-                assumenda dignissimos quisquam perspiciatis corporis sint
-                commodi cumque rem tempora!
-              </textarea>
+                placeholder="Write a description here"
+              ></textarea>
             </div>
             <div className="flex flex-col space-y-4 laptop:space-y-0 laptop:flex-row laptop:space-x-4">
               <div className="form-item w-full">
                 <label className="text-xl ">Tags</label>
                 <input
+                  name="tags"
+                  value={formState.tags}
+                  defaultValue=""
+                  onChange={handleForm}
                   type="text"
-                  defaultValue="Separated by commas"
+                  placeholder="Separated by commas"
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
-                  enable
+                  
                 />
               </div>
             </div>
@@ -101,10 +104,14 @@ const AccountPhotoUpload = (props) => {
               <div className="form-item w-full">
                 <label className="text-xl ">List Price</label>
                 <input
+                  name="price"
+                  value={formState.price}
+                  defaultValue=""
+                  onChange={handleForm}
                   type="text"
-                  defaultValue="$0.99"
+                  placeholder="$0.99"
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
-                  enable
+                  
                 />
               </div>
             </div>
