@@ -6,6 +6,7 @@ import { useAuth } from './utils/context';
 import { Account, Home, Cart, LoginPassport } from './Pages/';
 import PrivateRoute from './Components/PrivateRoute';
 import Navbar from './Components/Navbar';
+import Checkout from './Components/Cart/Checkout';
 // import Home from './Pages/Home';
 // import Cart from './Pages/Cart';
 // import SignupLogin from './Pages/SignupLogin';
@@ -69,13 +70,15 @@ function App() {
             price={price}
             {...props}
           />
-        )}
-        />
+        )} />
+        <Route exact path="/checkout" component={Checkout} />
+
         <PrivateRoute exact path='/account' component={Account} />
         <Route exact path="*" render={(props) => (
           <Home cartItems={cartItems} addToCart={addToCart} {...props} />
         )}
         />
+
       </Switch>
     </Router>
   );

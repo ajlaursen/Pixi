@@ -1,35 +1,11 @@
-import React, { useState } from 'react';
-import API from '../../utils/API'
+import React from 'react';
 
-//Parker Notes:
-// Need to confirm repeat password on front end.
-// Going to be modified testing routes
-
-
-
-const Signup = () => {
-
-  const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    passwordConf: ""
-  })
-
-  function handleUserSignup(event) {
-    event.preventDefault();
-    // let user = new FormData(event.target);
-    console.log(user);
-    if (user.password === user.passwordConf) API.createUser(user);
-  }
-
+export function Signup(props) {
   return (
-    <div className="flex laptop:mx-auto w-auto laptop:w-1/3 p-5 m-10 justify-evenly place-items-center">
-      <div className="container bg-pixi p-10 m-10 rounded-xl shadow-2xl">
-        <div className="text-center w-full text-4xl ">Sign up</div>
-        <div className="grid place-items-center">
-          <div className="p-4 bg-pixi">
+    <div className="flex laptop:mx-auto w-auto laptop:w-1/4 bg-pixi p-5 m-10 rounded-xl shadow-2xl justify-evenly place-items-center">
+      <div className="min-h-full place-items-center">
+        <div className="w-11/12 p-5 bg-pixi">
+          <div className="text-center w-full text-4xl ">Sign up</div>
             <h1 className="text-xl font-semibold">
               Hey there 👋 ,
               <span className="font-normal">
@@ -37,7 +13,7 @@ const Signup = () => {
                 sheet!
               </span>
             </h1>
-            <form id="sign-up" className="mt-6" onSubmit={handleUserSignup}>
+            <form id="sign-up" className="mt-6" onSubmit={props._handleUserSignup}>
               <div className="flex justify-between gap-3">
                 <span className="w-1/2">
                   <label
@@ -47,15 +23,15 @@ const Signup = () => {
                     First Name
                   </label>
                   <input
-                    id="firstname"
+                    id="firstName"
                     type="text"
-                    name="firstname"
+                    name="firstName"
                     placeholder="Cool"
                     autocomplete="given-name"
                     className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
                     required
-                    value={user.firstName}
-                    onChange={e => setUser({ ...user, firstName: e.target.value })}
+                    value={props.userSignup.firstName}
+                    onChange={props._handleChangeSignup}
                   />
                 </span>
                 <span className="w-1/2">
@@ -66,15 +42,15 @@ const Signup = () => {
                     Last name
                   </label>
                   <input
-                    id="lastname"
+                    id="lastName"
                     type="text"
-                    name="lastname"
+                    name="lastName"
                     placeholder="Cat"
                     autocomplete="family-name"
                     className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
                     required
-                    value={user.lastName}
-                    onChange={e => setUser({ ...user, lastName: e.target.value })}
+                    value={props.userSignup.lastName}
+                    onChange={props._handleChangeSignup}
                   />
                 </span>
               </div>
@@ -85,15 +61,15 @@ const Signup = () => {
                 E-mail
               </label>
               <input
-                id="email-signup"
+                id="email"
                 type="email"
                 name="email"
                 placeholder="cool.cat@email.com"
                 autocomplete="email"
                 className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
                 required
-                value={user.email}
-                onChange={e => setUser({ ...user, email: e.target.value })}
+                value={props.userSignup.email}
+                onChange={props._handleChangeSignup}
               />
               <label
                 for="password"
@@ -109,25 +85,25 @@ const Signup = () => {
                 autocomplete="new-password"
                 className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
                 required
-                value={user.password}
-                onChange={e => setUser({ ...user, password: e.target.value })}
+                value={props.userSignup.password}
+                onChange={props._handleChangeSignup}
               />
               <label
-                for="password-confirm"
+                for="passwordConf"
                 className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
               >
                 Confirm password
               </label>
               <input
-                id="password-confirm"
+                id="passwordConf"
                 type="password"
-                name="password-confirm"
+                name="passwordConf"
                 placeholder="********"
                 autocomplete="new-password"
                 className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
                 required
-                value={user.passwordConf}
-                onChange={e => setUser({ ...user, passwordConf: e.target.value })}
+                value={props.userSignup.passwordConf}
+                onChange={props._handleChangeSignup}
               />
               <button
                 type="submit"
@@ -136,16 +112,13 @@ const Signup = () => {
                 Sign up
               </button>
               <p className="flex justify-between inline-block mt-4 text-xs text-gray-500 cursor-pointer hover:text-black">
-                <a id="login" href="login">
+                <a id="login" onClick={props.togglePage}>
                   Already a Member? Click here
                 </a>
               </p>
             </form>
           </div>
-        </div>
       </div>
     </div>
   );
 }
-
-export default Signup
