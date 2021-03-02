@@ -109,11 +109,11 @@ class Navbar extends Component {
                 </div>
                 <div className='text-xl font-thin'>
                   <div className='flex'>
-                    <Link to='/contact' className=''>
+                    <Link to='/account' className=''>
                       Account
                     </Link>
                     <svg
-                    className="w-5"
+                      className="w-5"
                       xmlns='http://www.w3.org/2000/svg'
                       fill='none'
                       viewBox='0 0 24 24'
@@ -236,12 +236,12 @@ class Navbar extends Component {
                 </div>
                 <div className='text-xl font-light text-white'>
                   <div className='flex bg-buttonColor rounded-xl shadow-xl mx-2'>
-                    
+
                     <Link to='/cart' className='p-1 mx-3'>
-          
+
                       Cart
                     </Link>
-                  
+
                   </div>
                 </div>
               </div>

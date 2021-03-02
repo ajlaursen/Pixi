@@ -1,6 +1,21 @@
+const jwt = require('jsonwebtoken');
+// const passport = require('passport');
+const config = require('../config/database');
 const db = require('../models');
 const bcrypt = require('bcrypt');
 const ObjectID = require('mongodb').ObjectID;
+
+genToken = (user) => {
+    return jwt.sign(
+        {
+            id: user._id,
+            sub: user.id,
+            iat: new Date().getTime(),
+            exp: new Date().setDate(new Date().getDate() + 1),
+        },
+        config.jwt_secret
+    );
+};
 
 module.exports = {
     login: async function (req, res) {
@@ -10,34 +25,35 @@ module.exports = {
             const user = await db.User.findOne({ email: email });
 
             if (!user) {
-                res.status(404).json({ message: 'Login failed!' });
+                res.status(401).send({
+                    success: false,
+                    message: 'Login failed!',
+                });
                 return;
             }
 
             const passVal = await bcrypt.compare(password, user.password);
 
             if (!passVal) {
-                res.status(404).json({ message: 'Login failed!' });
+                res.status(401).send({
+                    success: false,
+                    message: 'Login failed!',
+                });
                 return;
             }
 
-            req.session.save(() => {
-                req.session.user_id = user._id;
-                req.session.logged_in = true;
-                res.status(200).json({ message: 'Login Success!' });
+            let token = genToken(user.toJSON());
+            res.json({
+                success: true,
+                token: token,
             });
         } catch (err) {
             res.status(500).json(err);
         }
     },
     logout: async function (req, res) {
-        if (req.session.logged_in) {
-            req.session.destroy(() => {
-                res.redirect('/');
-            });
-        } else {
-            res.redirect('/login');
-        }
+        req.logout();
+        res.redirect('/');
     },
     like: async function (req, res) {
         try {
