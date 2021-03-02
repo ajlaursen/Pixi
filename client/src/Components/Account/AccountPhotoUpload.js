@@ -1,28 +1,73 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 
-function AccountPhotoUpload() {
+const AccountPhotoUpload = (props) => {
+  const [state, setState] = useState({ file: null });
+  const [formState, setFormState] = useState([])
+
+  function handleFile(event) {
+    const file = event.target.files[0];
+    setState({ ...state, file });
+  }
+
+  function handleForm(event){
+    const {name, value} = event.target
+
+    setFormState( {
+      [name]: value
+    })
+  }
+
+  function handleClick(event) {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append('image', state.file);
+    console.log(formData)
+    axios.post('/api/files', formData)
+    .then((res) =>
+      axios.post('/api/image', {
+        "location": res.data.location,
+        "title": formState.title,
+        "description": formState.description,
+        "free": 1,
+        "price": formState.price
+      })
+    );
+  }
+
   return (
     <>
       <div className="col-span-12 laptop:border-solid laptop:border-l laptop:border-black laptop:border-opacity-25 h-full pb-12 laptop:col-span-10">
         <div className="px-4 pt-4">
-          <form action="#" className="flex flex-col space-y-8">
+          <form
+            action="#"
+            className="flex flex-col space-y-8"
+            onSubmit={handleClick}
+          >
             <div>
               <h3 className="text-2xl font-semibold">Add Photo</h3>
               <hr />
             </div>
             <div className="text-lg font-thin text-white   flex ">
-              <div className=" bg-buttonColor rounded-xl shadow-xl text-center  px-3 py-1">
-                <a to="/" className="">
-                  Upload Photo
-                </a>
+              <div  className="bg-buttonColor rounded-xl shadow-xl text-center  px-3 py-1 cursor-pointer relative">
+                <input
+                  type="file"
+                  onChange={handleFile}
+                  id="file-upload"
+                  className="cursor-pointer block opacity-0 pin-r pin-t "
+                />
+                <span className="top-2 left-50% absolute upload-button">Upload Photo</span>
               </div>
             </div>
             <div className="form-item">
               <label className="text-xl ">Title</label>
               <input
                 type="text"
-                placeholder="Photo Title"
+                name="title"
+                defaultValue="Photo Title"
                 className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
+                value={formState.title}
+                onChange={handleForm}
               />
             </div>
 
@@ -45,7 +90,7 @@ function AccountPhotoUpload() {
                 <label className="text-xl ">Tags</label>
                 <input
                   type="text"
-                  placeholder="Separated by commas"
+                  defaultValue="Separated by commas"
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
                   enable
                 />
@@ -57,24 +102,24 @@ function AccountPhotoUpload() {
                 <label className="text-xl ">List Price</label>
                 <input
                   type="text"
-                  placeholder="$0.99"
+                  defaultValue="$0.99"
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
                   enable
                 />
               </div>
             </div>
             <div className="text-lg font-thin text-white   flex mx-auto">
-              <div className=" bg-buttonColor rounded-xl shadow-xl text-center  px-3 py-1">
-                <a to="/" className="">
+              <button>
+                <div className=" bg-buttonColor rounded-xl shadow-xl text-center  px-3 py-1">
                   Save
-                </a>
-              </div>
+                </div>
+              </button>
             </div>
           </form>
         </div>
       </div>
     </>
   );
-}
+};
 
 export default AccountPhotoUpload;
