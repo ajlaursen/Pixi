@@ -48,17 +48,24 @@ const AccountPhotoUpload = (props) => {
               <hr />
             </div>
             <div className="text-lg font-thin text-white   flex ">
-              <div className="bg-buttonColor rounded-xl shadow-xl text-center  px-3 py-1 cursor-pointer relative">
+              {/* <div className="bg-buttonColor rounded-xl shadow-xl text-center  px-3 py-1 cursor-pointer relative">
+                <span className="top-2 left-50% upload-button">
+                  Upload Photo
+                </span> 
                 <input
                   type="file"
                   onChange={handleFile}
                   id="file-upload"
-                  className="cursor-pointer block opacity-0 pin-r pin-t "
+                  className="block opacity-1  pin-r pin-t "
                 />
-                <span className="top-2 left-50% absolute upload-button">
-                  Upload Photo
-                </span>
-              </div>
+              </div> */}
+              <label class="w-64 flex flex-col font-bold items-center px-4 py-6 bg-pixi text-black rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-cardColor hover:text-gray-200">
+        <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+        </svg>
+        <span class="mt-2 text-base leading-normal">Select an image</span>
+        <input type='file' class="hidden" onChange={handleFile}/>
+    </label>
             </div>
             <div className="form-item">
               <label className="text-xl ">Title</label>
