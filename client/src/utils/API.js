@@ -1,4 +1,5 @@
 import axios from 'axios';
+// import { useAuth } from '../../../utils/';
 
 function setDefaults(token) {
   axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
@@ -20,6 +21,7 @@ function getAuth() {
 
 function logout() {
   localStorage.removeItem('authentication');
+  
 };
 
 async function createUser(user) {
