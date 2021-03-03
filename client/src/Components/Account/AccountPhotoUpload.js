@@ -34,7 +34,9 @@ const AccountPhotoUpload = (props) => {
 
   return (
     <>
-      <div className={`col-span-12 laptop:border-solid laptop:border-l laptop:border-black laptop:border-opacity-25 h-full pb-12 laptop:col-span-10 ${props.hidden}`}>
+      <div
+        className={`col-span-12 laptop:border-solid laptop:border-l laptop:border-black laptop:border-opacity-25 h-full pb-12 laptop:col-span-10 ${props.hidden}`}
+      >
         <div className="px-4 pt-4">
           <form
             action="#"
@@ -95,7 +97,6 @@ const AccountPhotoUpload = (props) => {
                   type="text"
                   placeholder="Separated by commas"
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
-                  
                 />
               </div>
             </div>
@@ -111,7 +112,6 @@ const AccountPhotoUpload = (props) => {
                   type="text"
                   placeholder="$0.99"
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
-                  
                 />
               </div>
             </div>

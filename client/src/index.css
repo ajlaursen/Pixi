@@ -4,8 +4,10 @@
 
 .upload-button{
     transform: translate(-50%,0);
+    z-index: 52;
 }
 
 #file-upload{
     width: 200px;
+    z-index: 51;
 }
