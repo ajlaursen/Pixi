@@ -7,7 +7,7 @@ export default function PrivateRoute(props) {
     const { auth } = useAuth();
 
     const render = (props) => {
-        if (auth.token === undefined || !auth) {
+        if (auth === undefined || !auth) {
             return <Redirect to='/login' />;
         }
 
