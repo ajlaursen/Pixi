@@ -30,13 +30,13 @@ export default function Navbar(props) {
       <header className="p-4 pt-2 shadow-2xl laptop:hidden bg-pixi">
         <nav className="flex justify-between">
           <div className="">
-            <a href="index.html">
+            <Link to="/">
               <img
                 src="https://res.cloudinary.com/dsj0x6kfo/image/upload/v1613843508/smaller-logo.png"
                 className="h-52 object-contain object-right transform origin-bottom-left hover:-rotate-12 transition duration-300"
-                alt="JT Web Dev Logo"
+                alt=""
               />
-            </a>
+            </Link>
           </div>
           <div className="flex">
             <div className="flex flex-col justify-start my-auto ">
@@ -242,10 +242,23 @@ export default function Navbar(props) {
                   </div>
                 </div>
               )}
-              <div className="text-xl font-light text-white">
-                <div className="flex bg-buttonColor rounded-xl shadow-xl mx-2">
+              <div className="text-xl  text-black mr-3">
+                <div className="flex  mx-2">
                   <Link to="/cart" className="p-1 mx-3">
-                    Cart
+                    <svg
+                      className="w-8 "
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="{4}"
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                      />
+                    </svg>
                   </Link>
                 </div>
               </div>
