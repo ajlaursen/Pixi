@@ -58,14 +58,15 @@ function App() {
           <Home cartItems={cartItems} addToCart={addToCart} {...props} />
         )}
         />
-        <Route exact path="/login" render={(props) => (
+        <Route exact path="/login"> <LoginPassport /> </Route>
+        {/* <Route exact path="/login" render={(props) => (
           <LoginPassport
             cartItems={cartItems}
             setCartItems={setCartItems}
             {...props}
           />
         )}
-        />
+        /> */}
         <Route exact path="/cart" render={(props) => (
           <Cart
             cartItems={cartItems}
