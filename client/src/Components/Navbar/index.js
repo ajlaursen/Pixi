@@ -12,12 +12,12 @@ export default function Navbar(props) {
 
   const hamburger = () => {
     console.log(state);
-    if (state.navMenu == 'hidden') {
+    if (state.navMenu === 'hidden') {
       setState({
         navMenu: '',
         burgerMenu: 'hidden',
       });
-    } else if (state.burgerMenu == 'hidden') {
+    } else if (state.burgerMenu === 'hidden') {
       setState({
         navMenu: 'hidden',
         burgerMenu: '',

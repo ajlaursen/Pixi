@@ -126,7 +126,14 @@ module.exports = {
     getAllTags: async function (req, res) {
         try {
             const tags = await db.Tag.find({});
-            res.status(200).json(tags);
+            const tagsNew = tags.map((item) => {
+                return {
+                    value: item._id,
+                    label: item.tag,
+                };
+            });
+            // console.log(tagsNew);
+            res.status(200).json(tagsNew);
         } catch (err) {
             res.status(500).json(err);
         }

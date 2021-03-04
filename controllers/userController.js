@@ -41,7 +41,7 @@ module.exports = {
                 });
                 return;
             }
-
+            user.password = 'you wish, scrub';
             let token = genToken(user.toJSON());
             res.json({
                 success: true,
@@ -57,6 +57,7 @@ module.exports = {
     },
     like: async function (req, res) {
         try {
+            console.log(req.user);
             const userId = req.user._id;
             const imageId = req.params.id;
             const liked = await db.Like.countDocuments({
