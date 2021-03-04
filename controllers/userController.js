@@ -57,7 +57,7 @@ module.exports = {
     },
     like: async function (req, res) {
         try {
-            const userId = req.session.user_id;
+            const userId = req.user._id;
             const imageId = req.params.id;
             const liked = await db.Like.countDocuments({
                 imageId: ObjectID(imageId),
@@ -86,11 +86,17 @@ module.exports = {
             const addedUser = await db.User.create(newUser);
             newUser.passwordChanged = true;
             await db.UserAuditLog.create(newUser);
-            req.session.save(() => {
-                req.session.user_id = addedUser._id;
-                req.session.logged_in = true;
-                res.status(200).json({ message: 'User Creation Success!' });
+
+            let token = genToken(addedUser.toJSON());
+            res.json({
+                success: true,
+                token: token,
             });
+            // req.session.save(() => {
+            //     req.session.user_id = addedUser._id;
+            //     req.session.logged_in = true;
+            //     res.status(200).json({ message: 'User Creation Success!' });
+            // });
         } catch (err) {
             console.log(err);
             res.status(500).json(err);
@@ -98,7 +104,7 @@ module.exports = {
     },
     updateUser: async function (req, res) {
         try {
-            const userId = req.session.user_id;
+            const userId = req.user._id;
             const password = req.body.password;
             const user = await db.User.findById(userId);
 

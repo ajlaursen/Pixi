@@ -27,7 +27,9 @@ const ImageUpload = (props) => {
         <div className="text-center px-3 pb-6 pt-2">
        <form onSubmit={handleClick}>
            <input type="file" onChange={handleFile}/>
+           {/* needs some more logic */}
            <input type="text" placeholder="enter title"/>
+           <input type="text"/>
            <button>upload file</button>
         </form> 
         </div>

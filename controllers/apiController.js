@@ -19,7 +19,7 @@ module.exports = {
     },
     getImagesUser: async function (req, res) {
         try {
-            const userId = req.session.user_id;
+            const userId = req.user._id;
             const images = await db.Image.find({ userId: userId });
             res.status(200).json(images);
         } catch (err) {
@@ -28,7 +28,7 @@ module.exports = {
     },
     getOwnedImages: async function (req, res) {
         try {
-            const userId = req.session.user_id;
+            const userId = req.user._id;
             const images = await db.Orders.find({ userId: userId }).populate({
                 path: 'photos',
                 model: db.Image,
@@ -40,7 +40,7 @@ module.exports = {
     },
     postOrder: async function (req, res) {
         try {
-            const userId = req.session.user_id;
+            const userId = req.user._id;
             const newOrder = {
                 ...req.body,
                 userId: userId,
@@ -53,7 +53,7 @@ module.exports = {
     },
     postImage: async function (req, res) {
         try {
-            const userId = req.session.user_id;
+            const userId = req.user._id;
             const newImage = {
                 ...req.body,
                 userId: userId,
