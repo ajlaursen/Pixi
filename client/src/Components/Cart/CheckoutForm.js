@@ -82,41 +82,42 @@ export default function CheckoutForm() {
     return (
 
 
-       
-                
-                    <form id="payment-form" onSubmit={handleSubmit}>
-                        <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
-                        <button
-                            disabled={processing || disabled || succeeded}
-                            id="submit"
-                        >
-                            <span id="button-text">
-                                {processing ? (
-                                    <div className="spinner" id="spinner"></div>
-                                ) : (
-                                        "Pay now"
-                                    )}
-                            </span>
-                        </button>
-                        {/* Show any error that happens when processing the payment */}
-                        {error && (
-                            <div className="card-error" role="alert">
-                                {error}
-                            </div>
-                        )}
-                        {/* Show a success message upon completion */}
-                        <p className={succeeded ? "result-message" : "result-message hidden"}>
-                            Payment succeeded, see the result in your
+
+        <div className="flex flex-col justify-center items-center mt-12">
+            <form id="payment-form" onSubmit={handleSubmit} >
+                <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
+                <button
+                    disabled={processing || disabled || succeeded}
+                    id="submit"
+                >
+                    <span id="button-text">
+                        {processing ? (
+                            <div className="spinner" id="spinner"></div>
+                        ) : (
+                                "Pay now"
+                            )}
+                    </span>
+                </button>
+                {/* Show any error that happens when processing the payment */}
+                {error && (
+                    <div className="card-error" role="alert">
+                        {error}
+                    </div>
+                )}
+                {/* Show a success message upon completion */}
+                <p className={succeeded ? "result-message" : "result-message hidden"}>
+                    Payment succeeded, see the result in your
         <a
-                                href={`https://dashboard.stripe.com/test/payments`}
-                            >
-                                {" "}
+                        href={`https://dashboard.stripe.com/test/payments`}
+                    >
+                        {" "}
           Stripe dashboard.
         </a> Refresh the page to pay again.
       </p>
-                    </form>
-                
-  );
+            </form>
+            </div>
+
+    );
 }
 
 

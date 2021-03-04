@@ -24,6 +24,8 @@
     "prettier": "2.2.1"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^1.4.0",
+    "@stripe/stripe-js": "^1.13.1",
     "aws-sdk": "^2.846.0",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.0",
@@ -42,6 +44,7 @@
     "multer-s3": "^2.9.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "stripe": "^8.137.0"
   }
 }
