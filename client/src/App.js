@@ -86,13 +86,8 @@ function App() {
           />
         )} />
         <Route exact path="/checkout" component={Checkout} />
-<<<<<<< HEAD
-
-        <PrivateRoute exact path='/account' ><Account userData={userData} /></PrivateRoute>
-=======
         <Route exact path="/logout" ><Logout logBool={logBool} setLogBool={setLogBool} /></Route>
-        <PrivateRoute exact path='/account' component={Account} />
->>>>>>> main
+        <PrivateRoute exact path='/account' ><Account userData={userData} /></PrivateRoute>
         <Route exact path="*" render={(props) => (
           <Home cartItems={cartItems} addToCart={addToCart} {...props} />
         )}
