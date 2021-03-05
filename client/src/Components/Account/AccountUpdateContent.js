@@ -1,8 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
+import API from "../../utils/API"
 
 function AccountUpdateContent(props) {
+  const [updateUserData, setUpdateUserData] = useState({})
+  function handleChange(e) {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setUpdateUserData({ ...updateUserData, [name]: value })
+  }
+
+  function handleUserUpdate(e) {
+    e.preventDefault();
+    API.updateUser(updateUserData)
+      .then((res) => {
+        console.log("update user: ", res);
+      })
+      .catch((err) => {
+        // probably need a better way to notify on this error
+        console.log('err', err);
+      });
+  }
+  let userData=props.userData;
   return (
-    <>
+    <form onsubmit={handleUserUpdate}>
       <div className={`col-span-12 laptop:border-solid laptop:border-l laptop:border-black laptop:border-opacity-25 h-full pb-12 laptop:col-span-10 ${props.hidden}`}>
         <div className="px-4 pt-4">
           <form action="#" className="flex flex-col space-y-8">
@@ -12,10 +32,22 @@ function AccountUpdateContent(props) {
             </div>
 
             <div className="form-item">
-              <label className="text-xl ">Full Name</label>
+              <label className="text-xl ">First Name</label>
               <input
                 type="text"
-                placeholder="Antonia P. Howell"
+                name="firstName"
+                onchange={handleChange}
+                placeholder={userData.firstName}
+                className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
+              />
+            </div>
+            <div className="form-item">
+              <label className="text-xl ">Last Name</label>
+              <input
+                type="text"
+                name="lastName"
+                onchange={handleChange}
+                placeholder={userData.lastName}
                 className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
               />
             </div>
@@ -25,7 +57,9 @@ function AccountUpdateContent(props) {
                 <label className="text-xl ">Username</label>
                 <input
                   type="text"
-                  placeholder="antonia"
+                  name="username"
+                  onchange={handleChange}
+                  placeholder={userData.username}
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
                   enable
                 />
@@ -35,7 +69,9 @@ function AccountUpdateContent(props) {
                 <label className="text-xl ">Email</label>
                 <input
                   type="text"
-                  placeholder="antoniaph@gmail.com"
+                  name="email"
+                  onchange={handleChange}
+                  placeholder={userData.email}
                   className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
                 />
               </div>
@@ -51,6 +87,9 @@ function AccountUpdateContent(props) {
               <textarea
                 cols="30"
                 rows="10"
+                name="bio"
+                onchange={handleChange}
+                placeholder={userData.bio}
                 className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
               >
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
@@ -59,36 +98,6 @@ function AccountUpdateContent(props) {
                 assumenda dignissimos quisquam perspiciatis corporis sint
                 commodi cumque rem tempora!
               </textarea>
-            </div>
-
-            <div>
-              <h3 className="text-2xl font-semibold">My Social Media</h3>
-              <hr />
-            </div>
-
-            <div className="form-item">
-              <label className="text-xl ">Instagram</label>
-              <input
-                type="text"
-                placeholder="https://instagram.com/"
-                className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
-              />
-            </div>
-            <div className="form-item">
-              <label className="text-xl ">Facebook</label>
-              <input
-                type="text"
-                placeholder="https://facebook.com/"
-                className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
-              />
-            </div>
-            <div className="form-item">
-              <label className="text-xl ">Twitter</label>
-              <input
-                type="text"
-                placeholder="https://twitter.com/"
-                className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200  "
-              />
             </div>
             <div className="text-lg font-thin text-white   flex mx-auto">
               <div className=" bg-buttonColor rounded-xl shadow-xl text-center  px-3 py-1">
@@ -100,7 +109,7 @@ function AccountUpdateContent(props) {
           </form>
         </div>
       </div>
-    </>
+    </form>
   );
 }
 
