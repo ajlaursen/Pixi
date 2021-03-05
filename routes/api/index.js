@@ -9,7 +9,7 @@ router.get('/images', checkAuth, API.getImagesUser);
 
 router.get('/myimages', checkAuth, API.getOwnedImages);
 
-router.get('/getAllTags', checkAuth, API.getAllTags);
+router.get('/getAllTags', API.getAllTags);
 
 router.post('/neworder', checkAuth, API.postOrder);
 

@@ -3,13 +3,15 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { cart } from './utils/CART';
 import { API } from './utils/API';
 import { useAuth } from './utils/context';
-import { Account, Home, Cart, LoginPassport } from './Pages/';
+import { Account, Home, Cart, LoginPassport, Logout } from './Pages/';
 import PrivateRoute from './Components/PrivateRoute';
 import Navbar from './Components/Navbar';
 import Checkout from './Components/Cart/Checkout';
 // import Home from './Pages/Home';
 // import Cart from './Pages/Cart';
 // import SignupLogin from './Pages/SignupLogin';
+
+
 
 function App() {
   const [state, setState] = useState({
@@ -23,6 +25,8 @@ function App() {
     bio:'Hi, I am John, and I like to take pictures of things. Mostly of flip flops in sand, or maybe a microwave with a potato init. What I am trying to say, is I like to have money, and you can give it to me, so give me now.',
     email: 'JoDo@generic.gov',
   })
+
+  const [logBool, setLogBool] = useState(false);
 
   useEffect(() => {
     const res = API.getAuth();
@@ -57,20 +61,21 @@ function App() {
 
   return (
     <Router>
-      <Navbar />
+      <Navbar logBool={logBool} />
       <Switch>
         <Route exact path="/" render={(props) => (
           <Home cartItems={cartItems} addToCart={addToCart} {...props} />
         )}
         />
-        <Route exact path="/login" render={(props) => (
+        <Route exact path="/login"> <LoginPassport /> </Route>
+        {/* <Route exact path="/login" render={(props) => (
           <LoginPassport
             cartItems={cartItems}
             setCartItems={setCartItems}
             {...props}
           />
         )}
-        />
+        /> */}
         <Route exact path="/cart" render={(props) => (
           <Cart
             cartItems={cartItems}
@@ -81,8 +86,13 @@ function App() {
           />
         )} />
         <Route exact path="/checkout" component={Checkout} />
+<<<<<<< HEAD
 
         <PrivateRoute exact path='/account' ><Account userData={userData} /></PrivateRoute>
+=======
+        <Route exact path="/logout" ><Logout logBool={logBool} setLogBool={setLogBool} /></Route>
+        <PrivateRoute exact path='/account' component={Account} />
+>>>>>>> main
         <Route exact path="*" render={(props) => (
           <Home cartItems={cartItems} addToCart={addToCart} {...props} />
         )}

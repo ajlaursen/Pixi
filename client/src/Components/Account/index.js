@@ -52,7 +52,7 @@ function AccountHolderDiv(props) {
 
   return (
     <>
-      <div className="w-full laptop:w-3/4 relative mt-4 shadow-2xl rounded my-24 mx-auto overflow-hidden">
+      <div className="w-full laptop:w-3/4 relative mt-4 shadow-2xl rounded my-24 mx-auto">
         <div className="top h-64 w-full overflow-hidden relative">
           <img
             src="https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
