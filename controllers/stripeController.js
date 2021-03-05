@@ -2,44 +2,46 @@ const db = require('../models');
 const ObjectID = require('mongodb').ObjectID;
 const stripe = require('stripe')(process.env.STRIPE_KEY);
 
-const calculateOrderAmount = (items) => {
+const calculateOrderAmount = async (items) => {
     console.log('items', items);
+    const resultObj = {
+        images: [],
+        price: 0,
+    };
 
-    // db.Image.findById(ObjectID(items)).then((res) => {
-    //     console.log('image', items);
-    //     console.log('price', res.price);
-    // });
-
-    items.forEach((image) => {
-        // db.Image.findById(ObjectID(image._id)).then((res) => {
-        db.Image.findById(ObjectID(image)).then((res) => {
-            console.log('res', res);
-            // console.log('price', res.price);
-            // console.log('image_id', res._id);
-        });
-    });
+    await Promise.all(
+        items.map(async (image) => {
+            const result = await db.Image.findById(ObjectID(image));
+            resultObj.images.push(result._id);
+            resultObj.price = resultObj.price + result.price;
+        })
+    );
 
     // Replace this constant with a calculation of the order's amount
     // Calculate the order total on the server to prevent
     // people from directly manipulating the amount on the client
-    return 1400;
+    return resultObj.price;
 };
 
 module.exports = {
     createIntent: async function (req, res) {
         console.log('req.body', req.body);
-        // const { items } = req.body;
         const images = req.body.images;
-        console.log('images', images);
-        // console.log('items', items);
-        console.log(calculateOrderAmount(images));
-        // Create a PaymentIntent with the order amount and currency
-        const paymentIntent = await stripe.paymentIntents.create({
-            amount: calculateOrderAmount(images),
-            currency: 'usd',
-        });
-        res.send({
-            clientSecret: paymentIntent.client_secret,
-        });
+        const amount = await calculateOrderAmount(images);
+        if (!amount || amount < 50) {
+            res.status(200).json({
+                message:
+                    'Order must be at least $0.50, so we should figure out what to do for "free" images, if that\'s an option',
+            });
+        } else {
+            // Create a PaymentIntent with the order amount and currency
+            const paymentIntent = await stripe.paymentIntents.create({
+                amount: amount,
+                currency: 'usd',
+            });
+            res.send({
+                clientSecret: paymentIntent.client_secret,
+            });
+        }
     },
 };
