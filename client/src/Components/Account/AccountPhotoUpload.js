@@ -2,32 +2,15 @@ import React, { useState, useEffect } from 'react';
 import CreatableSelect from 'react-select/creatable';
 import axios from 'axios';
 
-const compress_images = require("compress-images");
-
-function resizeImage() {
-  compress_images(
-    "src/img/**/*.{jpg,JPG,jpeg,JPEG,png,svg,gif}",
-    "build/img/",
-    { compress_force: false, statistic: true, autoupdate: true },
-    false,
-    { jpg: { engine: "mozjpeg", command: ["-quality", "60"] } },
-    { png: { engine: "pngquant", command: ["--quality=20-50", "-o"] } },
-    { svg: { engine: "svgo", command: "--multipass" } },
-    {
-      gif: { engine: "gifsicle", command: ["--colors", "64", "--use-col=web"] },
-    },
-    function (err, completed) {
-      if (completed === true) {
-        console.log(completed)
-        // Doing something.
-      }
-    }
-  );
-}
-
 const AccountPhotoUpload = (props) => {
-  const [state, setState] = useState({ file: '', location: "https://via.placeholder.com/150" });
-  const [formState, setFormState] = useState({});
+  const [state, setState] = useState({ file: '',  location: "https://via.placeholder.com/150"});
+  // const [locationState, setLocationState] = useState({ location: "https://via.placeholder.com/150"})
+  const [formState, setFormState] = useState({
+    title: "",
+    price: "",
+    description: "",
+    tags: ""
+  });
   const [tags, setTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
   // let imageUpload = "https://via.placeholder.com/150";
@@ -40,10 +23,16 @@ const AccountPhotoUpload = (props) => {
 
   function handleFile(event) {
     const file = event.target.files[0];
-    console.log(event.target.files[0])
-    setState({ ...state, file });
     const location = URL.createObjectURL(event.target.files[0])
-    setState({...state, location})
+    // const obj = {
+    //   file,
+    //   location
+    // }
+    console.log(event.target.files[0])
+    setState({ file: file, location: location});
+    // setLocationState(location)
+    // console.log("state", state)
+    // setState({...state, location})
   }
 
   function handleForm(event) {
@@ -121,7 +110,7 @@ const AccountPhotoUpload = (props) => {
                 placeholder="Photo Title"
                 className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
                 value={formState.title}
-                defaultValue=""
+                // defaultValue=""
                 onChange={handleForm}
               />
             </div>
@@ -131,7 +120,7 @@ const AccountPhotoUpload = (props) => {
               <textarea
                 name="description"
                 value={formState.description}
-                defaultValue=""
+                // defaultValue=""
                 onChange={handleForm}
                 cols="30"
                 rows="10"
@@ -157,7 +146,7 @@ const AccountPhotoUpload = (props) => {
                 <input
                   name="price"
                   value={formState.price}
-                  defaultValue=""
+                  // defaultValue=""
                   onChange={handleForm}
                   type="text"
                   placeholder="$0.99"
