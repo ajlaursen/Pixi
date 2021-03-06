@@ -1,11 +1,8 @@
-import React, { useState, Component } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import AccountContent from './AccountInfoContent';
 import AccountPhotoUpload from './AccountPhotoUpload';
 import AccountUpdateContent from './AccountUpdateContent';
-import API from "../../utils/API"
-
-
-
+import { API } from '../../utils/API';
 
 function AccountHolderDiv(props) {
   const [state, setState] = useState({
@@ -16,8 +13,17 @@ function AccountHolderDiv(props) {
     buttonAccountUpdate: 'bg-pixi text-black',
     buttonPhotoUpload: 'bg-pixi text-black',
   });
+
+  //Need checker on email
+  useEffect(async () => {
+    // how do I get username?!
+    let user = await API.getUser();
+    console.log('user', user.userData);
+    props.setUserData(user.userData);
+  }, []);
+
   let userData = props.userData;
-  
+
   const accountHidden = (num) => {
     console.log(state);
     if (num == 1) {
@@ -66,7 +72,7 @@ function AccountHolderDiv(props) {
             />
             <h1 className="text-2xl font-semibold">
               {userData.firstName} {userData.lastName}
-              </h1>
+            </h1>
             <h4 className="text-sm font-semibold">Joined Since '19</h4>
           </div>
         </div>
