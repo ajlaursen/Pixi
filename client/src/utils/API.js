@@ -36,7 +36,7 @@ async function updateUser(user) {
     .catch(function (err) {
       console.log(err);
     });
-}
+};
 
 async function createUser(user) {
   return axios({
@@ -70,15 +70,24 @@ async function login(user) {
     });
 };
 
-async function getUser(user){
+async function getUser(){
   return axios({
     method: 'get',
     url: '/user/',
-    data: user,
+
   }).then(function (res) {
     return res.data
   }).catch((err)=>console.log(err))
-}
+};
+
+async function getImages() {
+  return axios({
+    method: 'get',
+    url: '/api/allimages'
+  }).then(function (res) {
+    return res.data
+  }).catch((err) => console.log(err));
+};
 
 export const API = {
   setDefaults,
@@ -89,4 +98,5 @@ export const API = {
   login,
   updateUser,
   getUser,
+  getImages,
 };

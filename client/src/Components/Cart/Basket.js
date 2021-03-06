@@ -41,7 +41,7 @@ function Basket(props) {
               return (
                        
                         <tr key={item.id}>
-                        <td className="hidden pb-4 md:table-cell">
+                        <td className="pb-4 md:table-cell">
                             <a href="#">
                                 <img src={item.image} className="w-20 rounded" alt="Thumbnail" />
                             </a>

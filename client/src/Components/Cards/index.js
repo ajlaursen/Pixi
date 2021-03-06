@@ -1,17 +1,16 @@
 import React from 'react';
-import faker from 'faker';
-import  { cart } from '../../utils/CART';
+// import  { cart } from '../../utils/CART';
 
 
 
 function card(props) {
 
   
-  const image = faker.fake('{{image.imageUrl}}')
-  const title = faker.fake('{{name.title}}')
-  const description = faker.fake('{{lorem.sentence}}')
-  const id = faker.fake('{{random.number}}')
-const price = faker.fake('{{finance.amount}}')
+  const image = props.src;
+  const title = props.title;
+  const description = props.desc;
+  const id = props.id;
+  const price = props.price;
 
 
   function addToCart() {
@@ -75,11 +74,11 @@ const price = faker.fake('{{finance.amount}}')
         <div className="p-5">
           <h3 className="text-white text-2xl text-center">{title}</h3>
           <p className="text-buttonColor">{description}</p>
-          <p className="">Hashtag</p>
+          <p className="">{props.tags.map(tag => {return tag.tag}).join(', ')}</p>
         </div>
         <div className="flex justify-between bottom-2">
           <div className="flex justify-start my-auto">
-            <p>${price}</p>
+            <p>$0.{price}</p>
           </div>
           
         </div>

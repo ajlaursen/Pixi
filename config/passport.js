@@ -1,15 +1,19 @@
 const passport = require('passport');
 const config = require('./database');
-let JwtStrategy = require('passport-jwt').Strategy,
+var JwtStrategy = require('passport-jwt').Strategy,
     ExtractJwt = require('passport-jwt').ExtractJwt;
 
-module.exports = function (user) {
-    let opts = {};
+module.exports = function (User) {
+    console.log('User', User);
+    var opts = {};
     opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
     opts.secretOrKey = config.jwt_secret;
+    console.log('opts', opts.jwtFromRequest);
     passport.use(
         new JwtStrategy(opts, function (jwt_payload, done) {
-            user.findOne({ id: jwt_payload.sub }, function (err, foundUser) {
+            console.log(jwt_payload.id);
+            User.findById(jwt_payload.id, function (err, foundUser) {
+                console.log('foundUser', foundUser);
                 if (err) {
                     return done(err, false);
                 }
@@ -18,7 +22,7 @@ module.exports = function (user) {
                 } else {
                     return done(null, false);
                 }
-            });
+            }).then((res) => console.log(res));
         })
     );
 };

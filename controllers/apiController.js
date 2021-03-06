@@ -1,17 +1,17 @@
-const { getToken, decode } = require('../utils/token');
+// const { getToken, decode } = require('../utils/token');
 const db = require('../models');
 const ObjectID = require('mongodb').ObjectID;
 
 module.exports = {
     getImages: async function (req, res) {
         try {
-            let token = decode(getToken(req.headers));
-            if (token) {
-                const images = await db.Image.find({});
-                res.status(200).json(images);
-            } else {
-                res.status(403).send({ message: 'Not authorized' });
-            }
+            // let token = decode(getToken(req.headers));
+            // if (token) {
+            const images = await db.Image.find({}).populate('tags', 'tag');
+            res.status(200).json(images);
+            // } else {
+            //     res.status(403).send({ message: 'Not authorized' });
+            // }
         } catch (err) {
             res.status(500).json(err);
         }
@@ -52,8 +52,6 @@ module.exports = {
     },
     postImage: async function (req, res) {
         try {
-            console.log("body", req.body)
-            console.log("user", req.user)
             const userId = req.user._id;
             const newImage = {
                 ...req.body,
