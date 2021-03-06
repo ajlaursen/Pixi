@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react';
 import CreatableSelect from 'react-select/creatable';
 import axios from 'axios';
 
+const compress_images = require("compress-images"),
+  INPUT_path_to_your_images,
+  OUTPUT_path;
+
+  INPUT_path_to_your_images = "src/img/**/*.{jpg,JPG,jpeg,JPEG,png,svg,gif}"
+
 const AccountPhotoUpload = (props) => {
   const [state, setState] = useState({ file: '', location: "https://via.placeholder.com/150" });
   const [formState, setFormState] = useState({});

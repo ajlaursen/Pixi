@@ -83,39 +83,12 @@ export default function Navbar(props) {
                 </p>
               </div>
               <div className="text-xl font-thin">
-                <p className="flex">
-                  <Link to="/" className="">
-                    Browse
-                  </Link>
-                  <svg
-                    className="w-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="{2}"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="{2}"
-                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                    />
-                  </svg>
-                </p>
-              </div>
-              <div className="text-xl font-thin">
                 <div className="flex">
                   <Link to="/account" className="">
                     Account
                   </Link>
                   <svg
-                    className="w-5"
+                    className="w-5 phone:hidden tablet:block"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -132,7 +105,7 @@ export default function Navbar(props) {
               </div>
               {!auth ? (
                 <div className="text-lg font-thin text-white m-0">
-                  <div className="flex bg-buttonColor rounded-xl shadow-xl text-center justify-center m-1 p-1">
+                  <div className="flex bg-buttonColor rounded-xl shadow-xl text-center justify-center mr-1 my-1 p-1">
                     <Link to="/login" className="">
                       Login
                     </Link>
@@ -140,7 +113,7 @@ export default function Navbar(props) {
                 </div>
               ) : (
                 <div className="text-lg font-thin text-white m-0">
-                  <div className="flex bg-buttonColor rounded-xl shadow-xl text-center justify-center m-1 p-1">
+                  <div className="flex bg-buttonColor rounded-xl shadow-xl text-center justify-center mr-1 my-1 p-1">
                     <Link to="/logout" className="">
                       Logout
                     </Link>
@@ -153,7 +126,7 @@ export default function Navbar(props) {
                     Cart
                   </Link>
                   <svg
-                    className="w-5"
+                    className="w-5 phone:hidden tablet:block"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -208,13 +181,6 @@ export default function Navbar(props) {
                 <p className="flex">
                   <Link to="/" className="p-1 mx-3">
                     Home
-                  </Link>
-                </p>
-              </div>
-              <div className="text-xl font-thin">
-                <p className="flex">
-                  <Link to="/" className="p-1 mx-3">
-                    Browse
                   </Link>
                 </p>
               </div>
