@@ -29,6 +29,7 @@
     "aws-sdk": "^2.846.0",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.0",
+    "compress-images": "^1.9.8",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "eslint": "^7.20.0",
