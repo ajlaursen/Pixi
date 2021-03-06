@@ -3,24 +3,32 @@ import CreatableSelect from 'react-select/creatable';
 import axios from 'axios';
 
 const AccountPhotoUpload = (props) => {
-  const [state, setState] = useState({ file: '', location: "https://via.placeholder.com/150" });
-  const [formState, setFormState] = useState({});
+  const [state, setState] = useState({
+    file: '',
+    location: 'https://via.placeholder.com/150',
+  });
+
+  const [formState, setFormState] = useState({
+    title: '',
+    price: '',
+    description: '',
+    tags: '',
+  });
   const [tags, setTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
-  // let imageUpload = "https://via.placeholder.com/150";
 
   useEffect(() => {
     axios.get('/api/getalltags').then((res) => {
       setTags(res.data);
-    })
+    });
   }, []);
 
   function handleFile(event) {
     const file = event.target.files[0];
-    console.log(event.target.files[0])
-    setState({ ...state, file });
-    const location = URL.createObjectURL(event.target.files[0])
-    setState({...state, location})
+    const location = URL.createObjectURL(event.target.files[0]);
+
+    console.log(event.target.files[0]);
+    setState({ file: file, location: location });
   }
 
   function handleForm(event) {
@@ -28,20 +36,20 @@ const AccountPhotoUpload = (props) => {
     setFormState({ ...formState, [name]: value });
   }
 
-  function handleTagChange (newValue, actionMeta) {
-
-    if (actionMeta.action === 'create-option' || actionMeta.action === 'select-option') {
-
-      setSelectedTags([ ...selectedTags, newValue[newValue.length-1] ]);
+  function handleTagChange(newValue, actionMeta) {
+    if (
+      actionMeta.action === 'create-option' ||
+      actionMeta.action === 'select-option'
+    ) {
+      setSelectedTags([...selectedTags, newValue[newValue.length - 1]]);
     }
-  };
-
+  }
 
   function handleClick(event) {
     event.preventDefault();
     const formData = new FormData();
     formData.append('image', state.file);
-    selectedTags.forEach(async (obj)  => {
+    selectedTags.forEach(async (obj) => {
       if (obj.__isNew__) {
         obj.tagName = obj.label;
         await axios.post('/api/addtag', obj).then((res) => {
@@ -50,18 +58,19 @@ const AccountPhotoUpload = (props) => {
       } else {
         obj._id = obj.value;
       }
-    });   
+    });
 
     axios.post('/api/files', formData).then((res) =>
-      axios.post('/api/image', {
-        location: res.data.location,
-        title: formState.title,
-        description: formState.description,
-        free: 0,
-        price: formState.price,
-        tags: selectedTags,
-      }).then((res) => {
-      })
+      axios
+        .post('/api/image', {
+          location: res.data.location,
+          title: formState.title,
+          description: formState.description,
+          free: 0,
+          price: formState.price,
+          tags: selectedTags,
+        })
+        .then((res) => {})
     );
   }
 
@@ -82,13 +91,29 @@ const AccountPhotoUpload = (props) => {
             </div>
             <div className="text-lg font-thin text-white   flex ">
               <label className="w-64 flex flex-col font-bold items-center px-4 py-6 bg-pixi text-black rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-cardColor hover:text-gray-200">
-        <svg className="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-            <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
-        </svg>
-        <span className="mt-2 text-base leading-normal">Select an image</span>
-        <input type='file' className="hidden" onChange={handleFile} accept="image/*"/>
-    </label>
-    <img src={state.location} alt="user uploaded file" className="ml-10 max-h-40 max-w-40"></img>
+                <svg
+                  className="w-8 h-8"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                </svg>
+                <span className="mt-2 text-base leading-normal">
+                  Select an image
+                </span>
+                <input
+                  type="file"
+                  className="hidden"
+                  onChange={handleFile}
+                  accept="image/*"
+                />
+              </label>
+              <img
+                src={state.location}
+                alt="user uploaded file"
+                className="ml-10 max-h-40 max-w-40"
+              ></img>
             </div>
             <div className="form-item">
               <label className="text-xl ">Title</label>
@@ -98,7 +123,7 @@ const AccountPhotoUpload = (props) => {
                 placeholder="Photo Title"
                 className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
                 value={formState.title}
-                defaultValue=""
+                // defaultValue=""
                 onChange={handleForm}
               />
             </div>
@@ -108,7 +133,7 @@ const AccountPhotoUpload = (props) => {
               <textarea
                 name="description"
                 value={formState.description}
-                defaultValue=""
+                // defaultValue=""
                 onChange={handleForm}
                 cols="30"
                 rows="10"
@@ -124,7 +149,7 @@ const AccountPhotoUpload = (props) => {
                   onChange={handleTagChange}
                   options={tags}
                   isMulti
-                  />
+                />
               </div>
             </div>
 
@@ -134,7 +159,7 @@ const AccountPhotoUpload = (props) => {
                 <input
                   name="price"
                   value={formState.price}
-                  defaultValue=""
+                  // defaultValue=""
                   onChange={handleForm}
                   type="text"
                   placeholder="$0.99"

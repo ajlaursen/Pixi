@@ -52,6 +52,8 @@ module.exports = {
     },
     postImage: async function (req, res) {
         try {
+            console.log("body", req.body)
+            console.log("user", req.user)
             const userId = req.user._id;
             const newImage = {
                 ...req.body,
