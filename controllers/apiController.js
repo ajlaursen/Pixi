@@ -1,4 +1,3 @@
-// const passport = require('passport');
 const { getToken, decode } = require('../utils/token');
 const db = require('../models');
 const ObjectID = require('mongodb').ObjectID;
