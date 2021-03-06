@@ -100,7 +100,7 @@ function AccountHolderDiv(props) {
             </button>
           </div>
           <AccountContent hidden={state.accountInfo} userData={userData} />
-          <AccountUpdateContent hidden={state.accountUpdate} userData={userData}/>
+          <AccountUpdateContent hidden={state.accountUpdate} setUserData={props.setUserData} userData={userData}/>
           <AccountPhotoUpload hidden={state.photoUpload} />
         </div>
       </div>

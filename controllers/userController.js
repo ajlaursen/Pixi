@@ -41,7 +41,6 @@ module.exports = {
         });
         return;
       }
-      user.password = 'you wish, scrub';
       let token = genToken(user.toJSON());
       res.json({
         success: true,

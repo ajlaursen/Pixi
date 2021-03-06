@@ -14,7 +14,7 @@ function AccountUpdateContent(props) {
     console.log(updateUserData);
     API.updateUser(updateUserData)
       .then((res) => {
-        console.log('update user: ', res);
+        props.setUserData(updateUserData)
       })
       .catch((err) => {
         // probably need a better way to notify on this error
