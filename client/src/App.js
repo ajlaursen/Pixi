@@ -18,6 +18,13 @@ function App() {
     ready: false,
   });
   const { auth, setAuth } = useAuth();
+  const [userData, setUserData] = useState({
+    firstName: "John",
+    lastName: "Doe",
+    username:'JoeyDoey',
+    bio:'Hi, I am John, and I like to take pictures of things. Mostly of flip flops in sand, or maybe a microwave with a potato init. What I am trying to say, is I like to have money, and you can give it to me, so give me now.',
+    email: 'JoDo@generic.gov',
+  })
 
   const [logBool, setLogBool] = useState(false);
 
@@ -31,6 +38,8 @@ function App() {
   }, []);
 
   const [cartItems, setCartItems] = useState([]);
+  
+  
 
   function addToCart(product) {
     cart.onAdd(product, cartItems, setCartItems);
@@ -78,7 +87,7 @@ function App() {
         )} />
         <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/logout" ><Logout logBool={logBool} setLogBool={setLogBool} /></Route>
-        <PrivateRoute exact path='/account' component={Account} />
+        <PrivateRoute exact path='/account' ><Account userData={userData} setUserData={setUserData} /></PrivateRoute>
         <Route exact path="*" render={(props) => (
           <Home cartItems={cartItems} addToCart={addToCart} {...props} />
         )}

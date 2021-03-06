@@ -12,4 +12,6 @@ router.get('/logout', checkAuth, USER.logout);
 
 router.get('/like/:id', checkAuth, USER.like);
 
+router.get('/', checkAuth, USER.getUser)
+
 module.exports = router;

@@ -24,16 +24,30 @@ function logout() {
   
 };
 
+async function updateUser(user) {
+  return axios({
+    method: 'post',
+    url: '/user/update',
+    data: user,
+  })
+    .then(function (res) {
+      console.log(res);
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+}
+
 async function createUser(user) {
   return axios({
     method: 'post',
     url: '/user/new',
     data: user,
   }).then(function (res) {
-    console.log(res);
-    setAuth({ token: res.data.token });
-    return res.data.token;
-  })
+      console.log(res);
+      setAuth({ token: res.data.token });
+      return res.data.token;
+    })
     .catch(function (err) {
       console.log(err);
     });
@@ -47,14 +61,25 @@ async function login(user) {
     url: '/user/login',
     data: user,
   }).then(function (res) {
-    console.log(res);
-    setAuth({ token: res.data.token });
-    return res.data.token;
-  })
+      console.log(res);
+      setAuth({ token: res.data.token });
+      return res.data.token;
+    })
     .catch(function (err) {
       console.log(err);
     });
 };
+
+async function getUser(user){
+  return axios({
+    method: 'get',
+    url: '/user/',
+    data: user,
+  }).then(function (res) {
+    return res.data
+  }).catch((err)=>console.log(err))
+}
+
 export const API = {
   setDefaults,
   setAuth,
@@ -62,4 +87,6 @@ export const API = {
   logout,
   createUser,
   login,
+  updateUser,
+  getUser,
 };
