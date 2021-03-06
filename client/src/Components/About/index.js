@@ -40,9 +40,7 @@ function About() {
                     className="float-left mr-1"
                     src="https://assets-global.website-files.com/5b5a66e9f3166b36708705fa/5cf8fb1f994fb7168d0d66fb_quote-intro.svg"
                   />{' '}
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam
+                  A community for lovers of photography to find and support artists, and become a creator as well
                 </div>
               </div>
             </div>
