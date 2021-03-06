@@ -69,6 +69,17 @@ async function login(user) {
       console.log(err);
     });
 };
+
+async function getUser(user){
+  return axios({
+    method: 'get',
+    url: '/user/',
+    data: user,
+  }).then(function (res) {
+    return res.data
+  }).catch((err)=>console.log(err))
+}
+
 export const API = {
   setDefaults,
   setAuth,
@@ -77,4 +88,5 @@ export const API = {
   createUser,
   login,
   updateUser,
+  getUser,
 };
