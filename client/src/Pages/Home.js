@@ -36,6 +36,8 @@ export function Home(props) {
                       price={image.price}
                       tags={image.tags}
                       addToCart={props.addToCart}
+                      firstName={image.userId.firstName}
+                      lastName={image.userId.lastName}
                     />
                   )
                 })

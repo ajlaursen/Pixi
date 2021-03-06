@@ -7,7 +7,15 @@ module.exports = {
         try {
             // let token = decode(getToken(req.headers));
             // if (token) {
-            const images = await db.Image.find({}).populate('tags', 'tag');
+            const images = await db.Image.find({})
+                .populate('tags', 'tag')
+                .populate({
+                    path: 'userId',
+                    select: {
+                        firstName: 1,
+                        lastName: 1,
+                    },
+                });
             res.status(200).json(images);
             // } else {
             //     res.status(403).send({ message: 'Not authorized' });
