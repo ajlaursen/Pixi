@@ -3,7 +3,7 @@ const API = require('../../controllers/apiController.js');
 const checkAuth = require('../../utils/auth');
 const files = require('../files');
 
-router.get('/allimages', checkAuth, API.getImages);
+router.get('/allimages', API.getImages);
 
 router.get('/images', checkAuth, API.getImagesUser);
 
