@@ -29,7 +29,6 @@ function randomArray(array){
     array[i] = array[randomIndex]
     array[randomIndex] = tempArray
   }
-  console.log("randomarray",array)
   setRandomCards(array)
 }
 
