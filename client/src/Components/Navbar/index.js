@@ -175,13 +175,13 @@ export default function Navbar(props) {
       <header className="hidden laptop:block flex flex-row bg-pixi shadow-xl">
         <nav className="flex ">
           <div className="w-1/2">
-            <a href="index.html">
+            <Link to="/">
               <img
                 src="https://res.cloudinary.com/dsj0x6kfo/image/upload/v1613843508/smaller-logo.png"
                 className="h-52 object-contain object-right transform origin-bottom-left hover:-rotate-12 transition duration-300"
                 alt="JT Web Dev Logo"
               />
-            </a>
+            </Link>
           </div>
           <div className="flex w-1/2 justify-end items-center">
             <div id="menu" className="flex flex-row text-right">
