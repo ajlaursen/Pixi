@@ -179,7 +179,7 @@ export default function Navbar(props) {
               <img
                 src="https://res.cloudinary.com/dsj0x6kfo/image/upload/v1613843508/smaller-logo.png"
                 className="h-52 object-contain object-right transform origin-bottom-left hover:-rotate-12 transition duration-300"
-                alt="JT Web Dev Logo"
+                alt="Pixi Logo"
               />
             </Link>
           </div>
