@@ -6,6 +6,8 @@ import { useAuth } from '../utils/context';
 export function Home(props) {
   const { auth } = useAuth();
   const [images, setImages] = useState([]);
+  const [randomCards, setRandomCards] = useState([])
+
   useEffect(() => {
     API.getImages()
       .then((res) => {
@@ -14,6 +16,26 @@ export function Home(props) {
       console.log('err', err);
     })
   }, []);
+
+useEffect(() => {
+  randomArray(images)
+}, [images])
+
+function randomArray(array){
+  let i = array.length - 1
+  for(i ; i > 0; i--){
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+    const tempArray = array[i];
+    array[i] = array[randomIndex]
+    array[randomIndex] = tempArray
+  }
+  console.log("randomarray",array)
+  setRandomCards(array)
+}
+
+
+
+
   return (
     <>
       {!auth ? (
@@ -24,7 +46,7 @@ export function Home(props) {
           images.length ? (
             <>
               {
-                images.slice(0, 15).map(image => {
+                randomCards.slice(0, 15).map(image => {
                   return (
                     <Card
                       key={image._id}

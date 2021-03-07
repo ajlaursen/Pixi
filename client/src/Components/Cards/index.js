@@ -26,7 +26,7 @@ function card(props) {
   }
 
 
-  console.log(image)
+
 
   return (
     <>
