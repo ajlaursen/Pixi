@@ -85,7 +85,7 @@ function App() {
             {...props}
           />
         )} />
-        <Route exact path="/checkout" component={Checkout} />
+        <Route exact path="/checkout"><Checkout cartItems={cartItems} /></Route>
         <Route exact path="/logout" ><Logout logBool={logBool} setLogBool={setLogBool} /></Route>
         <PrivateRoute exact path='/account' ><Account userData={userData} setUserData={setUserData} /></PrivateRoute>
         <Route exact path="*" render={(props) => (

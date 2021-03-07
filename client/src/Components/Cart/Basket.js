@@ -12,7 +12,7 @@ function Basket(props) {
 
     }
 
-    const subTotal = props.price(props.cartItems)
+    const subTotal = (props.price(props.cartItems) / 100).toFixed(2);
 
 
     return (
@@ -37,7 +37,7 @@ function Basket(props) {
                         </thead>
                         <tbody>
                         {props.cartItems.map(item => {
-             const totalPrice = item.price * item.qty      
+                            const totalPrice = ((item.price * item.qty) / 100).toFixed(2);
               return (
                        
                         <tr key={item.id}>
@@ -72,7 +72,7 @@ function Basket(props) {
                         </td>
                         <td className="text-right">
                             <span className="text-sm lg:text-base font-medium">
-                                {totalPrice}
+                                ${totalPrice}
       </span>
                         </td>
                     </tr>
@@ -89,7 +89,7 @@ function Basket(props) {
                                         Subtotal
                 </div>
                                     <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
-                                        {subTotal}
+                                        ${subTotal}
                 </div>
                                 </div>
                                 
