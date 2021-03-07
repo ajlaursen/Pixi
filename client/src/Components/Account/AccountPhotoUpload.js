@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CreatableSelect from 'react-select/creatable';
 import axios from 'axios';
 import Modal from 'react-modal';
+import { use } from 'passport';
 
 
 
@@ -21,6 +22,7 @@ const AccountPhotoUpload = (props) => {
   const [selectedTags, setSelectedTags] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] =useState("File upload failed")
+  const [saveButtonState, setSaveButtonState] = useState("")
 
   
 
@@ -54,6 +56,7 @@ const AccountPhotoUpload = (props) => {
 
   function handleClick(event) {
     event.preventDefault();
+    setSaveButtonState("hidden")
     console.log(fileState)
     if(fileState.location !== 'https://via.placeholder.com/150'){
     const formData = new FormData();
@@ -114,6 +117,7 @@ const AccountPhotoUpload = (props) => {
     });
     setSelectedTags([null])
     setSelectedTags([])
+    setSaveButtonState("")
   }
 
   return (
@@ -210,7 +214,7 @@ const AccountPhotoUpload = (props) => {
               </div>
             </div>
             <div className="text-lg font-thin text-white   flex mx-auto">
-              <button>
+              <button className={saveButtonState}>
                 <div className=" bg-buttonColor rounded-xl shadow-xl text-center  px-3 py-1">
                   Save
                 </div>
