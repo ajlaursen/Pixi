@@ -20,6 +20,9 @@ const AccountPhotoUpload = (props) => {
   const [tags, setTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] =useState("File upload failed")
+
+  
 
   useEffect(() => {
     axios.get('/api/getalltags').then((res) => {
@@ -51,6 +54,8 @@ const AccountPhotoUpload = (props) => {
 
   function handleClick(event) {
     event.preventDefault();
+    console.log(fileState)
+    if(fileState.location !== 'https://via.placeholder.com/150'){
     const formData = new FormData();
     formData.append('image', fileState.file);
     selectedTags.forEach(async (obj) => {
@@ -75,11 +80,17 @@ const AccountPhotoUpload = (props) => {
           tags: selectedTags,
         })
         .then((res) => {
-          console.log(res)
+          if(res.data.message === "Image added"){
+          console.log("res", res.data.message)
+          setModalContent(res.data.message)
           setShowModal(true);
+        }
           
         })
-    );
+    );}else{
+      setModalContent("Upload failed")
+      setShowModal(true);
+    }
   }
 
   const customStyles = {
@@ -96,7 +107,7 @@ const AccountPhotoUpload = (props) => {
   function handleClose(event) {
     event.preventDefault();
     setShowModal(false);
-    setFormState({ title: '', price: '99', description: '', tags: '' });
+    setFormState({ title: '', price: '0.99', description: '', tags: '' });
     setFileState({
       file: '',
       location: 'https://via.placeholder.com/150',
@@ -206,7 +217,7 @@ const AccountPhotoUpload = (props) => {
               </button>
               <Modal isOpen={showModal} style={customStyles}>
                 <div className="content-center">
-                <h1 className="content-center">Upload Succesful</h1>
+                <h1 className="content-center">{modalContent}</h1>
                 <button className="content-center" onClick={handleClose} >Close</button>
                 </div>
               </Modal>
