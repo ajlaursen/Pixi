@@ -8,10 +8,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'pixi': '#fdf5f3',
-        'buttonColor': '#1E5675',
-        'cardColor': '#CAB8AC'
-
+        pixi: '#fdf5f3',
+        buttonColor: '#1E5675',
+        cardColor: '#CAB8AC',
       },
     },
     screens: {
@@ -848,6 +847,7 @@ module.exports = {
     justifyItems: ['responsive'],
     justifySelf: ['responsive'],
     letterSpacing: ['responsive'],
+    lineClamp: ['hover'],
     lineHeight: ['responsive'],
     listStylePosition: ['responsive'],
     listStyleType: ['responsive'],
@@ -925,5 +925,7 @@ module.exports = {
     wordBreak: ['responsive'],
     zIndex: ['responsive', 'focus-within', 'focus'],
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp')
+  ],
 };
