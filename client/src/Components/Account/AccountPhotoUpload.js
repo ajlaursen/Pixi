@@ -218,7 +218,8 @@ const AccountPhotoUpload = (props) => {
               <Modal isOpen={showModal} style={customStyles}>
                 <div className="content-center">
                 <h1 className="content-center">{modalContent}</h1>
-                <button className="content-center" onClick={handleClose} >Close</button>
+                <button
+              className="flex flex-col font-bold items-center p-1 mt-2 bg-buttonColor  rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-cardColor text-gray-200" onClick={handleClose} >Close</button>
                 </div>
               </Modal>
             </div>
