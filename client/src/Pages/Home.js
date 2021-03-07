@@ -3,12 +3,9 @@ import Card from '../Components/Cards/';
 import About from '../Components/About/';
 import { API } from '../utils/API';
 import { useAuth } from '../utils/context';
-
-
 export function Home(props) {
   const { auth } = useAuth();
   const [images, setImages] = useState([]);
-
   useEffect(() => {
     API.getImages()
       .then((res) => {
@@ -51,8 +48,6 @@ export function Home(props) {
         ) : (
             <h1>Hmmm... No images found</h1>
           )}
-        
-
           </div>
           </>
       ) : (
@@ -85,8 +80,6 @@ export function Home(props) {
         ) : (
             <h1>Hmmm... No images found</h1>
           )}
-        
-
           </div>
       )}
     </>

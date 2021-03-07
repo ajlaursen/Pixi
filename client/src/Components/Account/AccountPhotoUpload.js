@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import CreatableSelect from 'react-select/creatable';
 import axios from 'axios';
+import Modal from 'react-modal';
+
+
 
 const AccountPhotoUpload = (props) => {
-  const [state, setState] = useState({
+  const [fileState, setFileState] = useState({
     file: '',
     location: 'https://via.placeholder.com/150',
   });
 
   const [formState, setFormState] = useState({
     title: '',
-    price: '',
+    price: '0.99',
     description: '',
     tags: '',
   });
   const [tags, setTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     axios.get('/api/getalltags').then((res) => {
@@ -28,7 +32,7 @@ const AccountPhotoUpload = (props) => {
     const location = URL.createObjectURL(event.target.files[0]);
 
     console.log(event.target.files[0]);
-    setState({ file: file, location: location });
+    setFileState({ file: file, location: location });
   }
 
   function handleForm(event) {
@@ -48,7 +52,7 @@ const AccountPhotoUpload = (props) => {
   function handleClick(event) {
     event.preventDefault();
     const formData = new FormData();
-    formData.append('image', state.file);
+    formData.append('image', fileState.file);
     selectedTags.forEach(async (obj) => {
       if (obj.__isNew__) {
         obj.tagName = obj.label;
@@ -70,8 +74,35 @@ const AccountPhotoUpload = (props) => {
           price: formState.price,
           tags: selectedTags,
         })
-        .then((res) => {})
+        .then((res) => {
+          console.log(res)
+          setShowModal(true);
+          
+        })
     );
+  }
+
+  const customStyles = {
+    content : {
+      top                   : '50%',
+      left                  : '50%',
+      right                 : 'auto',
+      bottom                : 'auto',
+      marginRight           : '-50%',
+      transform             : 'translate(-50%, -50%)'
+    }
+  };
+
+  function handleClose(event) {
+    event.preventDefault();
+    setShowModal(false);
+    setFormState({ title: '', price: '99', description: '', tags: '' });
+    setFileState({
+      file: '',
+      location: 'https://via.placeholder.com/150',
+    });
+    setSelectedTags([null])
+    setSelectedTags([])
   }
 
   return (
@@ -110,7 +141,7 @@ const AccountPhotoUpload = (props) => {
                 />
               </label>
               <img
-                src={state.location}
+                src={fileState.location}
                 alt="user uploaded file"
                 className="ml-10 max-h-40 max-w-40"
               ></img>
@@ -173,6 +204,12 @@ const AccountPhotoUpload = (props) => {
                   Save
                 </div>
               </button>
+              <Modal isOpen={showModal} style={customStyles}>
+                <div className="content-center">
+                <h1 className="content-center">Upload Succesful</h1>
+                <button className="content-center" onClick={handleClose} >Close</button>
+                </div>
+              </Modal>
             </div>
           </form>
         </div>
