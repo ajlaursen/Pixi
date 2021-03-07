@@ -1,3 +1,57 @@
+
+# Pixi.pics
+
+## Table of Contents
+[Description](#description)  
+[Technologies](#Technologies)
+[Installation](#Installation)  
+[Test](#Testing)  
+[Project Links](#live-Site-and-Repo)  
+[License](#License)  
+[Contributors](#Contributors)   
+[Screenshots](#Screenshots)  
+[React Info](#React-Info) 
+
+## Description
+* App designed to be a place to connect photographers and photography enthusiast.
+* Created in Mongo, Express, React, Node stack
+* users can upload photos, add photos to a cart, and purchase photos
+
+## Technologies
+* Mongo, Express, React, Node stack
+* Javascript, TailwindCSS, HTML, CSS
+* AWS S3 buckets
+
+## Installation
+* Use live site
+
+## Testing
+* No testing available
+
+## Live Site and Repo
+* [live Site](http://pixi.pics)
+* [Repo](http://github.com/ajlaursen/Pixi)
+
+## License
+* [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Contributors
+* Contributor: [Alex Laursen](https://github.com/Ajlaursen) Email: [contact@ajlaursen.codes](mailto:contact@ajlaursen.codes)
+* Contributor: [Jasmine Teters](https://github.com/jasmineteters) Email: [jasmineteters2020@gmail.com](mailto:jasmineteters2020@gmail.com)
+* Contributor: [Jorgen Tuck](https://github.com/jamestuckbc) Email: [jorgen@jorgentuck.com](mailto:jorgen@jorgentuck.com)
+* Contributor: [Kaitlyn Branagan](https://github.com/katers0259) Email: [kaitlynbranagan@gmail.com](mailto:kaitlynbranagan@gmail.com)
+* Contributor: [Parker Morgan](https://github.com/MorgansPlaysGames) Email: [jpmaster13@msn.com](mailto:jpmaster13@msn.com)
+
+## Screenshots
+
+<img src="readMeImages/screenshot1.png" width="250" >        <img src="readMeImages/screenshot3.png" width="250" >        <img src="readMeImages/screenshot2.png" width="250" >
+  
+  
+  
+  
+# React Info
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
