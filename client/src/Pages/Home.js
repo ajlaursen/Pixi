@@ -78,7 +78,7 @@ function randomArray(array){
           images.length ? (
             <>
               {
-                images.map(image => {
+                randomCards.map(image => {
                   return (
                     <Card
                       key={image._id}
