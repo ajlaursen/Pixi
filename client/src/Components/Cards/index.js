@@ -71,10 +71,10 @@ function card(props) {
             </button>
           </div>
         </div>
-        <div className="p-5">
+        <div className="">
           <h3 className="text-white text-2xl text-center">{title}</h3>
           <h5 className="text-white text-center">Photographer: {props.firstName} {props.lastName}</h5>
-          <p className="text-buttonColor">{description}</p>
+          <p className="text-buttonColor line-clamp-2 hover:line-clamp-none">{description}</p>
           <p className="">{props.tags.map(tag => {return tag.tag}).join(', ')}</p>
         </div>
         <div className="flex justify-between bottom-2">
