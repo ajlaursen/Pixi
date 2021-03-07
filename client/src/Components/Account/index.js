@@ -79,21 +79,21 @@ function AccountHolderDiv(props) {
         <div className="grid grid-cols-12 bg-white ">
           <div className="col-span-12 w-full px-3 py-6 justify-center flex space-x-4 border-b border-solid laptop:space-x-0 laptop:space-y-4 laptop:flex-col laptop:col-span-2 laptop:justify-start ">
             <button
-              className={`text-sm p-2   text-center rounded font-semibold bg-pixi hover:bg-cardColor hover:text-gray-200 ${state.buttonPhotoUpload}`}
+              className={`text-sm p-2   text-center rounded font-semibold hover:bg-cardColor hover:text-gray-200 ${state.buttonPhotoUpload}`}
               onClick={() => accountHidden(1)}
             >
               Upload Photos
             </button>
 
             <button
-              className={`text-sm p-2  text-center rounded font-semibold bg-pixi hover:bg-cardColor hover:text-gray-200 ${state.buttonAccountinfo}`}
+              className={`text-sm p-2  text-center rounded font-semibold hover:bg-cardColor hover:text-gray-200 ${state.buttonAccountinfo}`}
               onClick={() => accountHidden(2)}
             >
               Account
             </button>
 
             <button
-              className={`text-sm p-2  text-center rounded font-semibold bg-pixi hover:bg-cardColor hover:text-gray-200 ${state.buttonAccountUpdate}`}
+              className={`text-sm p-2  text-center rounded font-semibold hover:bg-cardColor hover:text-gray-200 ${state.buttonAccountUpdate}`}
               onClick={() => accountHidden(3)}
             >
               Update Information
