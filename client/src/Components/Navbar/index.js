@@ -25,6 +25,14 @@ export default function Navbar(props) {
     }
   };
 
+  const collapseMenu = () => {
+    if(state.navMenu !== 'hidden'){
+      setState({
+        navMenu: 'hidden',
+      })
+    }
+  }
+
   return (
     <>
       <header className="p-4 pt-2 shadow-2xl laptop:hidden bg-pixi">
@@ -63,7 +71,7 @@ export default function Navbar(props) {
             >
               <div className="text-xl font-thin">
                 <p className="flex">
-                  <Link to="/" className="">
+                  <Link to="/" onClick={() => collapseMenu()}>
                     Home
                   </Link>
                   <svg
@@ -84,7 +92,7 @@ export default function Navbar(props) {
               </div>
               <div className="text-xl font-thin">
                 <div className="flex">
-                  <Link to="/account" className="">
+                  <Link to="/account" onClick={() => collapseMenu()}>
                     Account
                   </Link>
                   <svg
@@ -106,7 +114,7 @@ export default function Navbar(props) {
               {!auth ? (
                 <div className="text-lg font-thin text-white m-0">
                   <div className="flex bg-buttonColor rounded-xl shadow-xl text-center justify-center mr-1 my-1 p-1">
-                    <Link to="/login" className="">
+                    <Link to="/login" onClick={() => collapseMenu()}>
                       Login
                     </Link>
                   </div>
@@ -114,7 +122,7 @@ export default function Navbar(props) {
               ) : (
                 <div className="text-lg font-thin text-white m-0">
                   <div className="flex bg-buttonColor rounded-xl shadow-xl text-center justify-center mr-1 my-1 p-1">
-                    <Link to="/logout" className="">
+                    <Link to="/logout" onClick={() => collapseMenu()}>
                       Logout
                     </Link>
                   </div>
@@ -122,7 +130,7 @@ export default function Navbar(props) {
               )}
               <div className="text-xl font-thin">
                 <div className="flex">
-                  <Link to="/cart" className="">
+                  <Link to="/cart" onClick={() => collapseMenu()}>
                     Cart
                   </Link>
                   <svg
@@ -167,13 +175,13 @@ export default function Navbar(props) {
       <header className="hidden laptop:block flex flex-row bg-pixi shadow-xl">
         <nav className="flex ">
           <div className="w-1/2">
-            <a href="index.html">
+            <Link to="/">
               <img
                 src="https://res.cloudinary.com/dsj0x6kfo/image/upload/v1613843508/smaller-logo.png"
                 className="h-52 object-contain object-right transform origin-bottom-left hover:-rotate-12 transition duration-300"
-                alt="JT Web Dev Logo"
+                alt="Pixi Logo"
               />
-            </a>
+            </Link>
           </div>
           <div className="flex w-1/2 justify-end items-center">
             <div id="menu" className="flex flex-row text-right">
