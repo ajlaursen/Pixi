@@ -10,9 +10,11 @@ function AccountHolderDiv(props) {
     accountInfo: 'hidden',
     accountUpdate: 'hidden',
     photoUpload: '',
+    userPhotos: 'hidden',
     buttonAccountInfo: 'bg-pixi text-black',
     buttonAccountUpdate: 'bg-pixi text-black',
     buttonPhotoUpload: 'bg-buttonColor text-white',
+    buttonUserPhotos: 'bg-pixi text-black',
   });
 
   //Need checker on email
@@ -104,7 +106,7 @@ function AccountHolderDiv(props) {
             </button>
 
             <button
-              className={`text-sm p-2 text-center rounded font-semibold hover:bg-cardColor hover:text-gray-200 ${state.buttonAccountinfo}`}
+              className={`text-sm p-2 text-center rounded font-semibold hover:bg-cardColor hover:text-gray-200 ${state.buttonAccountInfo}`}
               onClick={() => accountHidden(2)}
             >
               Account
