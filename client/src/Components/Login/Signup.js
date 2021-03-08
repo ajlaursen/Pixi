@@ -7,9 +7,9 @@ export function Signup(props) {
         <div className="w-11/12 p-5 bg-pixi">
           <div className="text-center w-full text-4xl ">Sign up</div>
             <h1 className="text-xl font-semibold">
-              Hey there 👋, 
+              Hey there 👋
               <span className="font-normal">
-                please fill in your information to get started with PIXI!
+                , please fill in your information to get started with PIXI!
               </span>
             </h1>
             <form id="sign-up" className="mt-6" onSubmit={props._handleUserSignup}>
