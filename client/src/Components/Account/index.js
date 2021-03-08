@@ -2,6 +2,7 @@ import React, { useState, useEffect, Component } from 'react';
 import AccountContent from './AccountInfoContent';
 import AccountPhotoUpload from './AccountPhotoUpload';
 import AccountUpdateContent from './AccountUpdateContent';
+import AccountUserPhotos from './AccountUserPhotos'
 import { API } from '../../utils/API';
 
 function AccountHolderDiv(props) {
@@ -31,27 +32,44 @@ function AccountHolderDiv(props) {
         accountInfo: 'hidden',
         accountUpdate: 'hidden',
         photoUpload: '',
+        userPhotos: 'hidden',
         buttonAccountInfo: 'bg-pixi text-black',
         buttonAccountUpdate: 'bg-pixi text-black',
         buttonPhotoUpload: 'bg-buttonColor text-white',
+        buttonUserPhotos: 'bg-pixi text-black',
       });
     } else if (num == 2) {
       setState({
         accountInfo: '',
         accountUpdate: 'hidden',
         photoUpload: 'hidden',
+        userPhotos: 'hidden',
         buttonAccountInfo: 'bg-buttonColor text-white',
         buttonAccountUpdate: 'bg-pixi text-black',
         buttonPhotoUpload: 'bg-pixi text-black',
+        buttonUserPhotos: 'bg-pixi text-black',
       });
     } else if (num == 3) {
       setState({
         accountInfo: 'hidden',
         accountUpdate: '',
         photoUpload: 'hidden',
+        userPhotos: 'hidden',
         buttonAccountInfo: 'bg-pixi text-black',
         buttonAccountUpdate: 'bg-buttonColor text-white',
         buttonPhotoUpload: 'bg-pixi text-black',
+        buttonUserPhotos: 'bg-pixi text-black',
+      });
+    } else if (num == 4) {
+      setState({
+        accountInfo: 'hidden',
+        accountUpdate: 'hidden',
+        photoUpload: 'hidden',
+        userPhotos: '',
+        buttonAccountInfo: 'bg-pixi text-black',
+        buttonAccountUpdate: 'bg-pixi text-black',
+        buttonPhotoUpload: 'bg-pixi text-black',
+        buttonUserPhotos: 'bg-buttonColor text-white'
       });
     }
   };
@@ -79,14 +97,14 @@ function AccountHolderDiv(props) {
         <div className="grid grid-cols-12 bg-white ">
           <div className="col-span-12 w-full px-3 py-6 justify-center flex space-x-4 border-b border-solid laptop:space-x-0 laptop:space-y-4 laptop:flex-col laptop:col-span-2 laptop:justify-start ">
             <button
-              className={`text-sm p-2   text-center rounded font-semibold hover:bg-cardColor hover:text-gray-200 ${state.buttonPhotoUpload}`}
+              className={`text-sm p-2 text-center rounded font-semibold hover:bg-cardColor hover:text-gray-200 ${state.buttonPhotoUpload}`}
               onClick={() => accountHidden(1)}
             >
               Upload Photos
             </button>
 
             <button
-              className={`text-sm p-2  text-center rounded font-semibold hover:bg-cardColor hover:text-gray-200 ${state.buttonAccountinfo}`}
+              className={`text-sm p-2 text-center rounded font-semibold hover:bg-cardColor hover:text-gray-200 ${state.buttonAccountinfo}`}
               onClick={() => accountHidden(2)}
             >
               Account
@@ -98,6 +116,12 @@ function AccountHolderDiv(props) {
             >
               Update Information
             </button>
+            <button
+              className={`text-sm p-2  text-center rounded font-semibold hover:bg-cardColor hover:text-gray-200 ${state.buttonUserPhotos}`}
+              onClick={() => accountHidden(4)}
+            >
+              My Photos
+            </button>
           </div>
           <AccountContent hidden={state.accountInfo} userData={userData} />
           <AccountUpdateContent
@@ -106,6 +130,7 @@ function AccountHolderDiv(props) {
             userData={userData}
           />
           <AccountPhotoUpload hidden={state.photoUpload} />
+          <AccountUserPhotos hidden={state.userPhotos} />
         </div>
       </div>
     </>
