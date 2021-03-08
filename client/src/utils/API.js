@@ -89,6 +89,15 @@ async function getImages() {
   }).catch((err) => console.log(err));
 };
 
+async function getUserImages() {
+  return axios({
+    method: 'get',
+    url: '/api/images'
+  }).then(function (res) {
+    return res.data
+  }).catch((err) => console.log(err));
+};
+
 export const API = {
   setDefaults,
   setAuth,
@@ -99,4 +108,5 @@ export const API = {
   updateUser,
   getUser,
   getImages,
+  getUserImages,
 };
