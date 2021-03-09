@@ -26,6 +26,8 @@ function AccountHolderDiv(props) {
   }, []);
 
   let userData = props.userData;
+  let date = new Date(userData.creationDate)
+  let year = date.getFullYear();
 
   const accountHidden = (num) => {
     console.log(state);
@@ -93,7 +95,7 @@ function AccountHolderDiv(props) {
             <h1 className="text-2xl font-semibold">
               {userData.firstName} {userData.lastName}
             </h1>
-            <h4 className="text-sm font-semibold">Joined Since '19</h4>
+            <h4 className="text-sm font-semibold">Joined Since {year}</h4>
           </div>
         </div>
         <div className="grid grid-cols-12 bg-white ">
