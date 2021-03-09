@@ -79,7 +79,7 @@ function card(props) {
         </div>
         <div className="flex justify-between bottom-2">
           <div className="flex justify-start my-auto">
-            <p>$0.{price}</p>
+            <p>${(price / 100).toFixed(2)}</p>
           </div>
           
         </div>
