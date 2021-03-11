@@ -7,6 +7,8 @@ router.get('/allimages', API.getImages);
 
 router.get('/images', checkAuth, API.getImagesUser);
 
+router.get('/imagesbytag', API.getImagesTag);
+
 router.get('/myimages', checkAuth, API.getOwnedImages);
 
 router.get('/getAllTags', API.getAllTags);

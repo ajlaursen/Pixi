@@ -45,6 +45,18 @@ module.exports = {
             res.status(500).json(err);
         }
     },
+    getImagesTag: async function (req, res) {
+        try {
+            console.log(req.body.tag)
+            const tag = req.body.tag;
+            const images = await db.Image.find({ tags: tag })
+                
+            res.status(200).json(images);
+            
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    },
     postOrder: async function (req, res) {
         try {
             const userId = req.user._id;

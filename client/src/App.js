@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { cart } from './utils/CART';
 import { API } from './utils/API';
 import { useAuth } from './utils/context';
-import { Account, Home, Cart, LoginPassport, Logout } from './Pages/';
+import { Account, Home, Cart, LoginPassport, Logout, TagSearch } from './Pages/';
 import PrivateRoute from './Components/PrivateRoute';
 import Navbar from './Components/Navbar';
 import Checkout from './Components/Cart/Checkout';
@@ -85,6 +85,7 @@ function App() {
             {...props}
           />
         )} />
+        <Route exact path="/search"><TagSearch /></Route>
         <Route exact path="/checkout"><Checkout cartItems={cartItems} /></Route>
         <Route exact path="/logout" ><Logout logBool={logBool} setLogBool={setLogBool} /></Route>
         <PrivateRoute exact path='/account' ><Account userData={userData} setUserData={setUserData} /></PrivateRoute>
