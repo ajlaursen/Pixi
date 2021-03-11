@@ -100,7 +100,7 @@ async function getUserImages() {
 
 async function getImagesByTag(tag) {
   return axios({
-    method: 'get',
+    method: 'post',
     url: 'api/imagesbytag',
     data: tag
   }).then(function (res) {
