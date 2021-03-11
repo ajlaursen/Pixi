@@ -27,7 +27,10 @@ module.exports = {
     getImagesUser: async function (req, res) {
         try {
             const userId = req.user._id;
-            const images = await db.Image.find({ userId: userId });
+            const images = await db.Image.find({ userId: userId }).populate(
+                'tags',
+                'tag'
+            );
             res.status(200).json(images);
         } catch (err) {
             res.status(500).json(err);

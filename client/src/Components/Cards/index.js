@@ -31,7 +31,7 @@ function card(props) {
   return (
     <>
       {/* <!-- CARD 1 --> */}
-      <div className="bg-cardColor shadow-lg rounded p-3 m-4 w-full tablet:w-1/4 laptop:w-1/5 desktop:w-1/6">
+      <div className="bg-cardColor shadow-lg rounded p-3 m-0 my-4 tablet:m-4 w-full tablet:w-1/4 laptop:w-1/5 desktop:w-1/6">
         <div className="group relative">
           <img className="w-full md:w-72 block rounded" src={image} alt="" />
           <div className="absolute bg-black rounded bg-opacity-0 group-hover:bg-opacity-60 w-full h-full top-0 flex items-center group-hover:opacity-100 transition justify-evenly">
@@ -79,7 +79,7 @@ function card(props) {
         </div>
         <div className="flex justify-between bottom-2">
           <div className="flex justify-start my-auto">
-            <p>$0.{price}</p>
+            <p>${(price / 100).toFixed(2)}</p>
           </div>
           
         </div>

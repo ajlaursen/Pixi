@@ -13,7 +13,7 @@ function About() {
             </div>
             <div className="text-xl mt-4">
               PIXI is built to be a source of inspiration. You can purchase
-              photos that you really like while support the artists you love.
+              photos that you really like while supporting the artists you love.
             </div>
             <div className="my-5 h-16">
               <Link to="/login">
@@ -40,7 +40,7 @@ function About() {
                     className="float-left mr-1"
                     src="https://assets-global.website-files.com/5b5a66e9f3166b36708705fa/5cf8fb1f994fb7168d0d66fb_quote-intro.svg"
                   />{' '}
-                  A community for lovers of photography to find and support artists, and become a creator as well
+                  A community for lovers of photography to find and support artists, and become creators as well
                 </div>
               </div>
             </div>
