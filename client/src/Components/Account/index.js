@@ -21,14 +21,12 @@ function AccountHolderDiv(props) {
   useEffect(async () => {
     // how do I get username?!
     let user = await API.getUser();
-    console.log('user', user.userData);
     props.setUserData(user.userData);
   }, []);
 
   let userData = props.userData;
 
   const accountHidden = (num) => {
-    console.log(state);
     if (num == 1) {
       setState({
         accountInfo: 'hidden',

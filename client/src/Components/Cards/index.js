@@ -21,7 +21,7 @@ function card(props) {
       image,
       price
     }
-    console.log(product)
+    
     props.addToCart(product)
   }
 
