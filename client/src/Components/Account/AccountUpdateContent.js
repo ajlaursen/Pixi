@@ -11,7 +11,7 @@ function AccountUpdateContent(props) {
 
   function handleUserUpdate(e) {
     e.preventDefault();
-    console.log(updateUserData);
+   
     API.updateUser(updateUserData)
       .then((res) => {
         props.setUserData(updateUserData)

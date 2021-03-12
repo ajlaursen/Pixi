@@ -15,14 +15,13 @@ export default function CheckoutForm(props) {
     const [clientSecret, setClientSecret] = useState('');
     const stripe = useStripe();
     const elements = useElements();
-    // console.log(props.cartItems);
+    
     useEffect(() => {
         const cartItems = [];
         props.cartItems.forEach(image => {
             cartItems.push(image.id);
         })
-        console.log('cartItems', cartItems);
-        // console.log('cartItems', cartItems);
+       
         // Create PaymentIntent as soon as the page loads
         window
             .fetch("/stripe/create-payment-intent", {
@@ -37,7 +36,7 @@ export default function CheckoutForm(props) {
             })
             .then(data => {
                 setClientSecret(data.clientSecret);
-                console.log(data);
+
             });
     }, []);
 

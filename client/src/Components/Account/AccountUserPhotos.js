@@ -8,7 +8,6 @@ function AccountUserPhotos(props) {
   useEffect(() => {
     API.getUserImages()
       .then((res) => {
-        console.log('Images? ', res);
         setImages(res);
       })
       .catch((err) => {

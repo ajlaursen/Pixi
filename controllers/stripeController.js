@@ -3,7 +3,6 @@ const ObjectID = require('mongodb').ObjectID;
 const stripe = require('stripe')(process.env.STRIPE_KEY);
 
 const calculateOrderAmount = async (items) => {
-    console.log('items', items);
     const resultObj = {
         images: [],
         price: 0,
@@ -25,7 +24,6 @@ const calculateOrderAmount = async (items) => {
 
 module.exports = {
     createIntent: async function (req, res) {
-        console.log('req.body', req.body);
         const images = req.body.images;
         const amount = await calculateOrderAmount(images);
         if (!amount || amount < 50) {

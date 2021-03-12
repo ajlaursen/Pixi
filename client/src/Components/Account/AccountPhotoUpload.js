@@ -35,8 +35,6 @@ const AccountPhotoUpload = (props) => {
   function handleFile(event) {
     const file = event.target.files[0];
     const location = URL.createObjectURL(event.target.files[0]);
-
-    console.log(event.target.files[0]);
     setFileState({ file: file, location: location });
   }
 
@@ -57,7 +55,6 @@ const AccountPhotoUpload = (props) => {
   function handleClick(event) {
     event.preventDefault();
     setSaveButtonState("hidden")
-    console.log(fileState)
     if(fileState.location !== 'https://via.placeholder.com/150'){
     const formData = new FormData();
     formData.append('image', fileState.file);
@@ -84,7 +81,6 @@ const AccountPhotoUpload = (props) => {
         })
         .then((res) => {
           if(res.data.message === "Image added"){
-          console.log("res", res.data.message)
           setModalContent(res.data.message)
           setShowModal(true);
         }

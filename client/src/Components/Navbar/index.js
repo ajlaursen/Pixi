@@ -4,14 +4,14 @@ import { useAuth } from '../../utils/context';
 
 export default function Navbar(props) {
   const { auth } = useAuth();
-  console.log(props.logBool);
+  
   const [state, setState] = useState({
     burgerMenu: '',
     navMenu: 'hidden',
   });
 
   const hamburger = () => {
-    console.log(state);
+    
     if (state.navMenu === 'hidden') {
       setState({
         navMenu: '',

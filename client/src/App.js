@@ -53,7 +53,7 @@ function App() {
     return cart.itemsPrice(product, cartItems, setCartItems);
   }
 
-  console.log(cartItems);
+  
 
   if (!state.ready) {
     return null;
