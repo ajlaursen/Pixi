@@ -26,19 +26,21 @@ export function TagSearch(props) {
 
   return (
     <>
-    <form onSubmit={handleTagSearch} className="flex flex-col space-y-8">
-      <div className="form-item">
-        <label className="text-xl ">Search by Tag</label>
-        <input
-          type="text"
-          name="tag"
-          onChange={handleChange}
-          placeholder="tag"
-          className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
-        />
-        <button className="">Search</button>
-      </div>
-    </form>
+      <form onSubmit={handleTagSearch} className="flex flex-col space-y-8">
+        <div className="form-item">
+          <label className="text-xl ">Search by Tag</label>
+          <input
+            type="text"
+            name="tag"
+            onChange={handleChange}
+            placeholder="tag"
+            className="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
+          />
+          <button className="text-lg font-thin text-white m-0 bg-buttonColor rounded-xl shadow-xl text-center justify-center mr-1 my-1 p-1">
+            Search
+          </button>
+        </div>
+      </form>
       <div className="flex flex-col tablet:flex-row justify-center flex-wrap">
         {images ? (
           images.length ? (
