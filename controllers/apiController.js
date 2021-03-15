@@ -51,10 +51,7 @@ module.exports = {
     getImagesTag: async function (req, res) {
         try {
             const tag = req.body.tag;
-            console.log(tag)
-            const tagId = await db.Tag.find({ tag: tag });
-            console.log(tagId[0]._id)
-            const images = await db.Image.find({ tags: tagId[0]._id, })
+            const images = await db.Image.find({ tags: tag })
                 .populate('tags', 'tag')
                 .populate({
                     path: 'userId',
@@ -64,7 +61,6 @@ module.exports = {
                     },
                 });
             res.status(200).json(images);
-            
         } catch (err) {
             res.status(500).json(err);
         }
