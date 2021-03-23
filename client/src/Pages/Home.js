@@ -18,7 +18,9 @@ export function Home(props) {
   }, []);
 
 useEffect(() => {
-  randomArray(images)
+  if(images){
+    randomArray(images) 
+  }
 }, [images])
 
 function randomArray(array){

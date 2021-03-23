@@ -10,8 +10,7 @@ const { User } = require('./models');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-var sslRedirect = require('heroku-ssl-redirect');
-app.use(sslRedirect());
+import sslRedirect from 'heroku-ssl-redirect';
 
 // const sess = {
 //     secret: 'Pixi Darkmode',
@@ -26,6 +25,7 @@ app.use(sslRedirect());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
+app.use(sslRedirect());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
