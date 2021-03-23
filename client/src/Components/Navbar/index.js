@@ -26,7 +26,7 @@ export default function Navbar(props) {
   };
 
   const collapseMenu = () => {
-    if(state.navMenu !== 'hidden'){
+    if (state.navMenu !== 'hidden') {
       setState({
         navMenu: 'hidden',
       })
@@ -90,27 +90,6 @@ export default function Navbar(props) {
                   </svg>
                 </p>
               </div>
-              <div className="text-xl font-thin">
-                <div className="flex">
-                  <Link to="/account" onClick={() => collapseMenu()}>
-                    Account
-                  </Link>
-                  <svg
-                    className="w-5 phone:hidden tablet:block"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="{2}"
-                      d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-              </div>
               {!auth ? (
                 <div className="text-lg font-thin text-white m-0">
                   <div className="flex bg-buttonColor rounded-xl shadow-xl text-center justify-center mr-1 my-1 p-1">
@@ -120,13 +99,36 @@ export default function Navbar(props) {
                   </div>
                 </div>
               ) : (
-                <div className="text-lg font-thin text-white m-0">
-                  <div className="flex bg-buttonColor rounded-xl shadow-xl text-center justify-center mr-1 my-1 p-1">
-                    <Link to="/logout" onClick={() => collapseMenu()}>
-                      Logout
-                    </Link>
+                <>
+                  <div className="text-xl font-thin">
+                    <div className="flex">
+                      <Link to="/account" onClick={() => collapseMenu()}>
+                        Account
+                  </Link>
+                      <svg
+                        className="w-5 phone:hidden tablet:block"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="{2}"
+                          d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </div>
                   </div>
-                </div>
+                  <div className="text-lg font-thin text-white m-0">
+                    <div className="flex bg-buttonColor rounded-xl shadow-xl text-center justify-center mr-1 my-1 p-1">
+                      <Link to="/logout" onClick={() => collapseMenu()}>
+                        Logout
+                    </Link>
+                    </div>
+                  </div>
+                </>
               )}
               <div className="text-xl font-thin">
                 <div className="flex">
@@ -192,13 +194,7 @@ export default function Navbar(props) {
                   </Link>
                 </p>
               </div>
-              <div className="text-xl font-thin">
-                <div className="flex">
-                  <Link to="/account" className="p-1 mx-3">
-                    Account
-                  </Link>
-                </div>
-              </div>
+
               {!auth ? (
                 <div className="text-xl font-light text-white">
                   <div className="flex bg-buttonColor rounded-xl shadow-xl mx-2">
@@ -208,13 +204,22 @@ export default function Navbar(props) {
                   </div>
                 </div>
               ) : (
-                <div className="text-xl font-light text-white">
-                  <div className="flex bg-buttonColor rounded-xl shadow-xl mx-2">
-                    <Link to="/logout" className="p-1 mx-3">
-                      Logout
-                    </Link>
+                <>
+                  <div className="text-xl font-thin">
+                    <div className="flex">
+                      <Link to="/account" className="p-1 mx-3">
+                        Account
+                  </Link>
+                    </div>
                   </div>
-                </div>
+                  <div className="text-xl font-light text-white">
+                    <div className="flex bg-buttonColor rounded-xl shadow-xl mx-2">
+                      <Link to="/logout" className="p-1 mx-3">
+                        Logout
+                    </Link>
+                    </div>
+                  </div>
+                </>
               )}
               <div className="text-xl  text-black mr-3">
                 <div className="flex  mx-2">

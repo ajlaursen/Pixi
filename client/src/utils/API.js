@@ -21,7 +21,7 @@ function getAuth() {
 
 function logout() {
   localStorage.removeItem('authentication');
-  
+
 };
 
 async function updateUser(user) {
@@ -48,6 +48,7 @@ async function createUser(user) {
       setAuth({ token: res.data.token });
       return res.data.token;
     })
+
     .catch(function (err) {
       // console.log(err);
     });
@@ -65,19 +66,20 @@ async function login(user) {
       setAuth({ token: res.data.token });
       return res.data.token;
     })
+
     .catch(function (err) {
       // console.log(err);
     });
 };
 
-async function getUser(){
+async function getUser() {
   return axios({
     method: 'get',
     url: '/user/',
 
   }).then(function (res) {
     return res.data
-  }).catch((err)=>console.log(err))
+  }).catch((err) => console.log(err))
 };
 
 async function getImages() {
@@ -98,6 +100,23 @@ async function getUserImages() {
   }).catch((err) => console.log(err));
 };
 
+async function getImagesByTag(tag) {
+  const data = await axios({
+    method: 'post',
+    url: 'api/imagesbytag',
+    data: tag
+  });
+  return data;
+};
+
+async function getAllTags() {
+  const data = await axios({
+    method: 'get',
+    url: 'api/getalltags',
+  })
+  return data;
+}
+
 export const API = {
   setDefaults,
   setAuth,
@@ -109,4 +128,6 @@ export const API = {
   getUser,
   getImages,
   getUserImages,
+  getImagesByTag,
+  getAllTags,
 };

@@ -48,6 +48,23 @@ module.exports = {
             res.status(500).json(err);
         }
     },
+    getImagesTag: async function (req, res) {
+        try {
+            const tag = req.body.tag;
+            const images = await db.Image.find({ tags: tag })
+                .populate('tags', 'tag')
+                .populate({
+                    path: 'userId',
+                    select: {
+                        firstName: 1,
+                        lastName: 1,
+                    },
+                });
+            res.status(200).json(images);
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    },
     postOrder: async function (req, res) {
         try {
             const userId = req.user._id;
