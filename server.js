@@ -10,7 +10,7 @@ const { User } = require('./models');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-var sslRedirect = require('heroku-ssl-redirect');
+import sslRedirect from 'heroku-ssl-redirect';
 
 // const sess = {
 //     secret: 'Pixi Darkmode',
