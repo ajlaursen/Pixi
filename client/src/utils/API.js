@@ -77,7 +77,7 @@ async function getUser(){
 
   }).then(function (res) {
     return res.data
-  // }).catch((err)=>console.log(err))
+  }).catch((err)=>console.log(err))
 };
 
 async function getImages() {
@@ -86,7 +86,7 @@ async function getImages() {
     url: '/api/allimages'
   }).then(function (res) {
     return res.data
-  // }).catch((err) => console.log(err));
+  }).catch((err) => console.log(err));
 };
 
 async function getUserImages() {
@@ -95,7 +95,7 @@ async function getUserImages() {
     url: '/api/images'
   }).then(function (res) {
     return res.data
-  // }).catch((err) => console.log(err));
+  }).catch((err) => console.log(err));
 };
 
 export const API = {
