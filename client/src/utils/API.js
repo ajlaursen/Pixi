@@ -31,10 +31,10 @@ async function updateUser(user) {
     data: user,
   })
     .then(function (res) {
-      console.log(res);
+      // console.log(res);
     })
     .catch(function (err) {
-      console.log(err);
+      // console.log(err);
     });
 };
 
@@ -44,29 +44,31 @@ async function createUser(user) {
     url: '/user/new',
     data: user,
   }).then(function (res) {
-    console.log(res);
-    setAuth({ token: res.data.token });
-    return res.data.token;
-  })
+      // console.log(res);
+      setAuth({ token: res.data.token });
+      return res.data.token;
+    })
+
     .catch(function (err) {
-      console.log(err);
+      // console.log(err);
     });
 
 };
 
 async function login(user) {
-  console.log(user);
+  // console.log(user);
   return axios({
     method: 'post',
     url: '/user/login',
     data: user,
   }).then(function (res) {
-    console.log(res);
-    setAuth({ token: res.data.token });
-    return res.data.token;
-  })
+      // console.log(res);
+      setAuth({ token: res.data.token });
+      return res.data.token;
+    })
+
     .catch(function (err) {
-      console.log(err);
+      // console.log(err);
     });
 };
 
