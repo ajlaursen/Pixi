@@ -10,8 +10,6 @@ const { User } = require('./models');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-import sslRedirect from 'heroku-ssl-redirect';
-
 // const sess = {
 //     secret: 'Pixi Darkmode',
 //     cookie: {},
@@ -25,7 +23,16 @@ import sslRedirect from 'heroku-ssl-redirect';
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
-app.use(sslRedirect());
+
+if (process.env.NODE_ENV === 'production') {
+    app.use((req, res, next) => {
+        if (req.header('x-forwarded-proto') !== 'https') {
+            res.redirect(`https://${req.header('host')}${req.url}`);
+        } else {
+            next();
+        }
+    });
+}
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
